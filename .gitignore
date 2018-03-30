@@ -9,3 +9,7 @@ packages
 pubspec.lock
 .flutter-plugins
 *.psd
+
+## Google API files
+GoogleService-Info.plist
+google-services.json
