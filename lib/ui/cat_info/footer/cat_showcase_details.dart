@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SkillsShowcase extends StatelessWidget {
+class DetailsShowcase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;

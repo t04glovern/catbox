@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PortfolioShowcase extends StatelessWidget {
+class PicturesShowcase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var items = <Widget>[];

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:meta/meta.dart';
 
-class Friend {
-  Friend({
+class Cat {
+  Cat({
     @required this.avatar,
     @required this.name,
     @required this.email,
@@ -14,17 +14,17 @@ class Friend {
   final String email;
   final String location;
 
-  static List<Friend> allFromResponse(String json) {
+  static List<Cat> allFromResponse(String json) {
     return JSON
         .decode(json)['results']
-        .map((obj) => Friend.fromMap(obj))
+        .map((obj) => Cat.fromMap(obj))
         .toList();
   }
 
-  static Friend fromMap(Map map) {
+  static Cat fromMap(Map map) {
     var name = map['name'];
 
-    return new Friend(
+    return new Cat(
       avatar: map['picture']['large'],
       name: '${_capitalize(name['first'])} ${_capitalize(name['last'])}',
       email: map['email'],

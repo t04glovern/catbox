@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:catbox/ui/cats/cat.dart';
 
-class FriendDetailBody extends StatelessWidget {
-  FriendDetailBody(this.friend);
+class CatDetailBody extends StatelessWidget {
+  CatDetailBody(this.cat);
 
-  final Friend friend;
+  final Cat cat;
 
   _createCircleBadge(IconData iconData, Color color) {
     return new Padding(
@@ -36,7 +36,7 @@ class FriendDetailBody extends StatelessWidget {
         new Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: new Text(
-            friend.location,
+            cat.location,
             style: textTheme.subhead.copyWith(color: Colors.white),
           ),
         ),
@@ -47,7 +47,7 @@ class FriendDetailBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         new Text(
-          friend.name,
+          cat.name,
           style: textTheme.headline.copyWith(color: Colors.white),
         ),
         new Padding(

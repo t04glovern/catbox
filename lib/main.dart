@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         accentColor: const Color(0xFFF850DD),
       ),
-      home: new FriendsPage(),
+      home: new CatsPage(),
     );
   }
 }

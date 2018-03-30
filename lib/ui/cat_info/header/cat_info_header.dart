@@ -3,15 +3,15 @@ import 'package:catbox/ui/cat_info/header/cat_cut_colored_image.dart';
 import 'package:catbox/ui/cats/cat.dart';
 import 'package:meta/meta.dart';
 
-class FriendDetailHeader extends StatelessWidget {
+class CatDetailHeader extends StatelessWidget {
   static const BACKGROUND_IMAGE = 'images/profile_header_background.png';
 
-  FriendDetailHeader(
-    this.friend, {
+  CatDetailHeader(
+    this.cat, {
     @required this.avatarTag,
   });
 
-  final Friend friend;
+  final Cat cat;
   final Object avatarTag;
 
   _createPillButton(
@@ -52,7 +52,7 @@ class FriendDetailHeader extends StatelessWidget {
     var avatar = new Hero(
       tag: avatarTag,
       child: new CircleAvatar(
-        backgroundImage: new NetworkImage(friend.avatar),
+        backgroundImage: new NetworkImage(cat.avatar),
         radius: 50.0,
       ),
     );

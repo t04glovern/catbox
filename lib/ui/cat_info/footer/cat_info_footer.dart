@@ -4,16 +4,16 @@ import 'package:catbox/ui/cat_info/footer/cat_showcase_pictures.dart';
 import 'package:catbox/ui/cat_info/footer/cat_showcase_details.dart';
 import 'package:catbox/ui/cats/cat.dart';
 
-class FriendShowcase extends StatefulWidget {
-  FriendShowcase(this.friend);
+class CatShowcase extends StatefulWidget {
+  CatShowcase(this.cat);
 
-  final Friend friend;
+  final Cat cat;
 
   @override
-  _FriendShowcaseState createState() => new _FriendShowcaseState();
+  _CatShowcaseState createState() => new _CatShowcaseState();
 }
 
-class _FriendShowcaseState extends State<FriendShowcase>
+class _CatShowcaseState extends State<CatShowcase>
     with TickerProviderStateMixin {
   List<Tab> _tabs;
   List<Widget> _pages;
@@ -28,9 +28,9 @@ class _FriendShowcaseState extends State<FriendShowcase>
       new Tab(text: 'Cattributes'),
     ];
     _pages = [
-      new PortfolioShowcase(),
-      new SkillsShowcase(),
-      new ArticlesShowcase(),
+      new PicturesShowcase(),
+      new DetailsShowcase(),
+      new CattributesShowcase(),
     ];
     _controller = new TabController(
       length: _tabs.length,

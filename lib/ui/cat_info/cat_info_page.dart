@@ -5,20 +5,20 @@ import 'package:catbox/ui/cat_info/header/cat_info_header.dart';
 import 'package:catbox/ui/cats/cat.dart';
 import 'package:meta/meta.dart';
 
-class FriendDetailsPage extends StatefulWidget {
-  FriendDetailsPage(
-    this.friend, {
+class CatDetailsPage extends StatefulWidget {
+  CatDetailsPage(
+    this.cat, {
     @required this.avatarTag,
   });
 
-  final Friend friend;
+  final Cat cat;
   final Object avatarTag;
 
   @override
-  _FriendDetailsPageState createState() => new _FriendDetailsPageState();
+  _CatDetailsPageState createState() => new _CatDetailsPageState();
 }
 
-class _FriendDetailsPageState extends State<FriendDetailsPage> {
+class _CatDetailsPageState extends State<CatDetailsPage> {
   @override
   Widget build(BuildContext context) {
     var linearGradient = new BoxDecoration(
@@ -39,15 +39,15 @@ class _FriendDetailsPageState extends State<FriendDetailsPage> {
           child: new Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              new FriendDetailHeader(
-                widget.friend,
+              new CatDetailHeader(
+                widget.cat,
                 avatarTag: widget.avatarTag,
               ),
               new Padding(
                 padding: const EdgeInsets.all(24.0),
-                child: new FriendDetailBody(widget.friend),
+                child: new CatDetailBody(widget.cat),
               ),
-              new FriendShowcase(widget.friend),
+              new CatShowcase(widget.cat),
             ],
           ),
         ),
