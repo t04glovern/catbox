@@ -17,6 +17,15 @@ You can follow these instructions to build the CatBox app and install it onto yo
 
 If you are new to Flutter, please first follow the [Flutter Setup](https://flutter.io/setup/) guide.
 
+#### Google API Configs
+
+Obtain a copy of `GoogleService-Info.plist` and `google-services.json` fromm the firebase console and put them in the following directories if you need to build for release
+
+```bash
+./ios/Runner/GoogleService-Info.plist
+./android/app/google-services.json
+```
+
 ### Building and installing the CatBox app
 
 ```bash
