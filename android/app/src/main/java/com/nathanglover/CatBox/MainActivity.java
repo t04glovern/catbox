@@ -1,4 +1,4 @@
-package com.yourcompany.tesrt;
+package com.nathanglover.CatBox;
 
 import android.os.Bundle;
 
