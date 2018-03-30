@@ -26,11 +26,11 @@ class _CatsPageState extends State<CatsPage> {
     });
   }
 
-  _buildFriendItem(BuildContext context, int index) {
+  _buildCatItem(BuildContext context, int index) {
     Cat cat = _cats[index];
 
     return new ListTile(
-      onTap: () => _navigateToFriendDetails(cat, index),
+      onTap: () => _navigateToCatDetails(cat, index),
       leading: new Hero(
         tag: index,
         child: new CircleAvatar(
@@ -42,7 +42,7 @@ class _CatsPageState extends State<CatsPage> {
     );
   }
 
-  _navigateToFriendDetails(Cat cat, Object avatarTag) {
+  _navigateToCatDetails(Cat cat, Object avatarTag) {
     Navigator.of(context).push(
       new MaterialPageRoute(
         builder: (c) {
@@ -63,7 +63,7 @@ class _CatsPageState extends State<CatsPage> {
     } else {
       content = new ListView.builder(
         itemCount: _cats.length,
-        itemBuilder: _buildFriendItem,
+        itemBuilder: _buildCatItem,
       );
     }
 
