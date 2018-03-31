@@ -5,14 +5,18 @@ class Cat {
   Cat({
     @required this.avatar,
     @required this.name,
-    @required this.email,
     @required this.location,
+    @required this.description,
+    @required this.age,
+    @required this.stars,
   });
 
   final String avatar;
   final String name;
-  final String email;
   final String location;
+  final String description;
+  final String age;
+  final String stars;
 
   static List<Cat> allFromResponse(String json) {
     return JSON
@@ -26,8 +30,10 @@ class Cat {
     return new Cat(
       avatar: map['fields']['image_url']['stringValue'],
       name: '${_capitalize(map['fields']['name']['stringValue'])}',
-      email: map['fields']['description']['stringValue'],
-      location: map['fields']['age']['integerValue'],
+      location: map['fields']['location']['stringValue'],
+      description: map['fields']['description']['stringValue'],
+      age: map['fields']['age']['integerValue'],
+      stars: map['fields']['stars']['integerValue'],
     );
   }
 

@@ -38,7 +38,7 @@ class _CatsPageState extends State<CatsPage> {
         ),
       ),
       title: new Text(cat.name),
-      subtitle: new Text(cat.email),
+      subtitle: new Text(cat.description),
     );
   }
 

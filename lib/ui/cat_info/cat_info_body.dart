@@ -56,10 +56,7 @@ class CatDetailBody extends StatelessWidget {
         ),
         new Padding(
           padding: const EdgeInsets.only(top: 16.0),
-          child: new Text(
-            'Lorem Ipsum is simply dummy text of the printing and typesetting '
-                'industry. Lorem Ipsum has been the industry\'s standard dummy '
-                'text ever since the 1500s.',
+          child: new Text(cat.description,
             style:
                 textTheme.body1.copyWith(color: Colors.white70, fontSize: 16.0),
           ),
@@ -68,9 +65,9 @@ class CatDetailBody extends StatelessWidget {
           padding: const EdgeInsets.only(top: 16.0),
           child: new Row(
             children: [
-              _createCircleBadge(Icons.beach_access, theme.accentColor),
-              _createCircleBadge(Icons.cloud, Colors.white12),
-              _createCircleBadge(Icons.shop, Colors.white12),
+              _createCircleBadge(Icons.share, theme.accentColor),
+              _createCircleBadge(Icons.phone, Colors.white12),
+              _createCircleBadge(Icons.email, Colors.white12),
             ],
           ),
         ),
