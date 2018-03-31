@@ -28,9 +28,9 @@ class _CatShowcaseState extends State<CatShowcase>
       new Tab(text: 'Cattributes'),
     ];
     _pages = [
-      new PicturesShowcase(),
-      new DetailsShowcase(),
-      new CattributesShowcase(),
+      new PicturesShowcase(widget.cat),
+      new DetailsShowcase(widget.cat),
+      new CattributesShowcase(widget.cat),
     ];
     _controller = new TabController(
       length: _tabs.length,

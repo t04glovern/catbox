@@ -8,6 +8,7 @@ class Cat {
     @required this.location,
     @required this.description,
     @required this.age,
+    @required this.pictures,
     @required this.stars,
   });
 
@@ -16,6 +17,7 @@ class Cat {
   final String location;
   final String description;
   final String age;
+  final List<String> pictures;
   final String stars;
 
   static List<Cat> allFromResponse(String json) {
@@ -26,6 +28,10 @@ class Cat {
   }
 
   static Cat fromMap(Map map) {
+    List<String> images = [];
+    for(Map<String, dynamic> s in map['fields']['pictures']['arrayValue']['values']) {
+      images.add(s['stringValue']);
+    }
 
     return new Cat(
       avatar: map['fields']['image_url']['stringValue'],
@@ -33,6 +39,7 @@ class Cat {
       location: map['fields']['location']['stringValue'],
       description: map['fields']['description']['stringValue'],
       age: map['fields']['age']['integerValue'],
+      pictures: images,
       stars: map['fields']['stars']['integerValue'],
     );
   }

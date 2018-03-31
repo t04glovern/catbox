@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:catbox/ui/cats/cat.dart';
 
 class PicturesShowcase extends StatelessWidget {
+  PicturesShowcase(this.cat);
+
+  final Cat cat;
+
   @override
   Widget build(BuildContext context) {
     var items = <Widget>[];
 
-    for (var i = 1; i <= 6; i++) {
-      var image = new Image.asset(
-          'images/portfolio_$i.jpeg',
-          width: 200.0,
-          height: 200.0,
+    for (var i = 0; i < cat.pictures.length; i++) {
+      var image = new Image.network(
+        cat.pictures[i],
+        width: 200.0,
+        height: 200.0,
       );
 
       items.add(image);
