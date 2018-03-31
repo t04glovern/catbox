@@ -1,3 +1,5 @@
+![CatBox Banner](/assets/project-banner.jpg)
+
 <div align = "center">
     <h1>CatBox</h1>
     <p>View cats that are up for adoption</p>
@@ -56,3 +58,13 @@ Icon was created using: https://pub.dartlang.org/packages/flutter_launcher_icons
 flutter pub get
 flutter pub pub run flutter_launcher_icons:main
 ```
+
+## API Source
+
+```bash
+https://firestore.googleapis.com/v1beta1/projects/catbox-flutter/databases/(default)/documents/cats
+```
+
+## Screenshots
+
+![CatBox App](/assets/project-dashboard.jpg)
