@@ -67,4 +67,4 @@ https://firestore.googleapis.com/v1beta1/projects/catbox-flutter/databases/(defa
 
 ## Screenshots
 
-![CatBox App](/assets/project-dashboard.png)
+![CatBox App](/assets/project-dashboard.jpg)
