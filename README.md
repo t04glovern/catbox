@@ -1,4 +1,4 @@
-![CatBox Banner](/assets/project-banner.png)
+![CatBox Banner](/assets/project-banner.jpg)
 
 <div align = "center">
     <h1>CatBox</h1>
