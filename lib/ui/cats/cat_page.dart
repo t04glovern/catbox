@@ -19,7 +19,7 @@ class _CatsPageState extends State<CatsPage> {
 
   _loadCats() async {
     String response =
-        await createHttpClient().read('https://randomuser.me/api/?results=25');
+      await createHttpClient().read('https://firestore.googleapis.com/v1beta1/projects/catbox-flutter/databases/(default)/documents/cats');
 
     setState(() {
       _cats = Cat.allFromResponse(response);

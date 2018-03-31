@@ -16,19 +16,18 @@ class Cat {
 
   static List<Cat> allFromResponse(String json) {
     return JSON
-        .decode(json)['results']
+        .decode(json)['documents']
         .map((obj) => Cat.fromMap(obj))
         .toList();
   }
 
   static Cat fromMap(Map map) {
-    var name = map['name'];
 
     return new Cat(
-      avatar: map['picture']['large'],
-      name: '${_capitalize(name['first'])} ${_capitalize(name['last'])}',
-      email: map['email'],
-      location: _capitalize(map['location']['state']),
+      avatar: map['fields']['image_url']['stringValue'],
+      name: '${_capitalize(map['fields']['name']['stringValue'])}',
+      email: map['fields']['description']['stringValue'],
+      location: map['fields']['age']['integerValue'],
     );
   }
 
