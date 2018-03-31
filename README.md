@@ -1,4 +1,4 @@
-![CatBox Banner]((/assets/project-banner.png)
+![CatBox Banner](/assets/project-banner.png)
 
 <div align = "center">
     <h1>CatBox</h1>
@@ -67,4 +67,4 @@ https://firestore.googleapis.com/v1beta1/projects/catbox-flutter/databases/(defa
 
 ## Screenshots
 
-![CatBox App]((/assets/project-dashboard.png)
+![CatBox App](/assets/project-dashboard.png)
