@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       theme: new ThemeData(
         primarySwatch: Colors.blue,
-        accentColor: const Color(0xFFF850DD),
+        accentColor: Colors.pinkAccent
       ),
       home: new CatsPage(),
     );

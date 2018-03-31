@@ -25,7 +25,7 @@ class CatDetailHeader extends StatelessWidget {
         minWidth: 140.0,
         color: backgroundColor,
         textColor: textColor,
-        onPressed: () {},
+        onPressed: () {}, //TODO Launch adoption information page
         child: new Text(text),
       ),
     );
@@ -46,14 +46,14 @@ class CatDetailHeader extends StatelessWidget {
         height: 280.0,
         fit: BoxFit.cover,
       ),
-      color: const Color(0xBB8338f4),
+      color: const Color(0xBB42A5F5),
     );
 
     var avatar = new Hero(
       tag: avatarTag,
       child: new CircleAvatar(
         backgroundImage: new NetworkImage(cat.avatar),
-        radius: 50.0,
+        radius: 75.0,
       ),
     );
 
@@ -62,13 +62,17 @@ class CatDetailHeader extends StatelessWidget {
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          new Text('90 Following', style: followerStyle),
-          new Text(
-            ' | ',
-            style: followerStyle.copyWith(
-                fontSize: 24.0, fontWeight: FontWeight.normal),
+          new Icon(
+            Icons.star,
+            color: Colors.white,
+            size: 16.0,
           ),
-          new Text('100 Followers', style: followerStyle),
+          new Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: new Text(
+              cat.stars,
+              style: textTheme.subhead.copyWith(color: Colors.white),
+          ))
         ],
       ),
     );
@@ -83,18 +87,14 @@ class CatDetailHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           _createPillButton(
-            'HIRE ME',
+            'ADOPT ME',
             backgroundColor: theme.accentColor,
+            textColor: Colors.white,
           ),
-          new DecoratedBox(
-            decoration: new BoxDecoration(
-              border: new Border.all(color: Colors.white30),
-              borderRadius: new BorderRadius.circular(30.0),
-            ),
-            child: _createPillButton(
-              'FOLLOW',
-              textColor: Colors.white70,
-            ),
+          _createPillButton(
+            'STAR',
+            backgroundColor: Colors.lightGreen,
+            textColor: Colors.white,
           ),
         ],
       ),
