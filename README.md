@@ -50,6 +50,17 @@ Then run the following to debug with live reloading
 flutter run --debug
 ```
 
+### Build Issues
+
+#### MissingPluginException
+
+If you are getting a missing plugin exception (likely due to Firestore Cloud) simply run the following to clear out the old builds
+
+```bash
+flutter clean
+flutter packages get
+```
+
 ## Icon
 
 Icon was created using: https://pub.dartlang.org/packages/flutter_launcher_icons

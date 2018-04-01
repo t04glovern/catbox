@@ -22,30 +22,61 @@ class Cat {
   final bool adopted;
   final List<String> pictures;
 
-  static List<Cat> allFromResponse(String json) {
-    return JSON
-        .decode(json)['documents']
-        .map((obj) => Cat.fromMap(obj))
-        .toList();
+  //DEPRECATED
+//  static List<Cat> allFromResponse(String json) {
+//    return JSON
+//        .decode(json)['documents']
+//        .map((obj) => Cat.fromResponseMap(obj))
+//        .toList();
+//  }
+
+  static List<Cat> allFromFirebase(Iterable<Map<String, dynamic>> cats) {
+    List<Cat> catList = [];
+    cats.forEach((cat) {
+      catList.add(Cat.fromFirebaseMap(cat));
+    });
+    return catList;
   }
 
-  static Cat fromMap(Map map) {
+  //DEPRECATED
+//  static Cat fromResponseMap(Map map) {
+//    List<String> images = [];
+//
+//    if(map['fields']['pictures']['arrayValue']['values'] != null) {
+//      for(Map<String, dynamic> s in map['fields']['pictures']['arrayValue']['values']) {
+//        images.add(s['stringValue']);
+//      }
+//    }
+//
+//    return new Cat(
+//      id: int.parse(map['fields']['id']['integerValue']),
+//      name: map['fields']['name']['stringValue'],
+//      description: map['fields']['description']['stringValue'],
+//      avatar: map['fields']['image_url']['stringValue'],
+//      location: map['fields']['location']['stringValue'],
+//      stars: int.parse(map['fields']['stars']['integerValue']),
+//      adopted: map['fields']['adopted']['booleanValue'],
+//      pictures: images,
+//    );
+//  }
+
+  static Cat fromFirebaseMap(Map map) {
     List<String> images = [];
 
-    if(map['fields']['pictures']['arrayValue']['values'] != null) {
-      for(Map<String, dynamic> s in map['fields']['pictures']['arrayValue']['values']) {
-        images.add(s['stringValue']);
+    if(map['pictures'] != null) {
+      for(String s in map['pictures']) {
+        images.add(s);
       }
     }
 
     return new Cat(
-      id: int.parse(map['fields']['id']['integerValue']),
-      name: map['fields']['name']['stringValue'],
-      description: map['fields']['description']['stringValue'],
-      avatar: map['fields']['image_url']['stringValue'],
-      location: map['fields']['location']['stringValue'],
-      stars: int.parse(map['fields']['stars']['integerValue']),
-      adopted: map['fields']['adopted']['booleanValue'],
+      id: map['id'],
+      name: map['name'],
+      description: map['description'],
+      avatar: map['image_url'],
+      location: map['location'],
+      stars: map['stars'],
+      adopted: map['adopted'],
       pictures: images,
     );
   }
