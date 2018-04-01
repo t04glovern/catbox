@@ -3,48 +3,81 @@ import 'package:meta/meta.dart';
 
 class Cat {
   Cat({
-    @required this.avatar,
+    @required this.id,
     @required this.name,
-    @required this.location,
     @required this.description,
-    @required this.age,
-    @required this.pictures,
+    @required this.avatar,
+    @required this.location,
     @required this.stars,
+    @required this.adopted,
+    @required this.pictures,
   });
 
-  final String avatar;
+  final int id;
   final String name;
-  final String location;
   final String description;
-  final String age;
+  final String avatar;
+  final String location;
+  final int stars;
+  final bool adopted;
   final List<String> pictures;
-  final String stars;
 
-  static List<Cat> allFromResponse(String json) {
-    return JSON
-        .decode(json)['documents']
-        .map((obj) => Cat.fromMap(obj))
-        .toList();
+  //DEPRECATED
+//  static List<Cat> allFromResponse(String json) {
+//    return JSON
+//        .decode(json)['documents']
+//        .map((obj) => Cat.fromResponseMap(obj))
+//        .toList();
+//  }
+
+  static List<Cat> allFromFirebase(Iterable<Map<String, dynamic>> cats) {
+    List<Cat> catList = [];
+    cats.forEach((cat) {
+      catList.add(Cat.fromFirebaseMap(cat));
+    });
+    return catList;
   }
 
-  static Cat fromMap(Map map) {
+  //DEPRECATED
+//  static Cat fromResponseMap(Map map) {
+//    List<String> images = [];
+//
+//    if(map['fields']['pictures']['arrayValue']['values'] != null) {
+//      for(Map<String, dynamic> s in map['fields']['pictures']['arrayValue']['values']) {
+//        images.add(s['stringValue']);
+//      }
+//    }
+//
+//    return new Cat(
+//      id: int.parse(map['fields']['id']['integerValue']),
+//      name: map['fields']['name']['stringValue'],
+//      description: map['fields']['description']['stringValue'],
+//      avatar: map['fields']['image_url']['stringValue'],
+//      location: map['fields']['location']['stringValue'],
+//      stars: int.parse(map['fields']['stars']['integerValue']),
+//      adopted: map['fields']['adopted']['booleanValue'],
+//      pictures: images,
+//    );
+//  }
+
+  static Cat fromFirebaseMap(Map map) {
     List<String> images = [];
-    for(Map<String, dynamic> s in map['fields']['pictures']['arrayValue']['values']) {
-      images.add(s['stringValue']);
+
+    if(map['pictures'] != null) {
+      for(String s in map['pictures']) {
+        images.add(s);
+      }
     }
 
     return new Cat(
-      avatar: map['fields']['image_url']['stringValue'],
-      name: '${_capitalize(map['fields']['name']['stringValue'])}',
-      location: map['fields']['location']['stringValue'],
-      description: map['fields']['description']['stringValue'],
-      age: map['fields']['age']['integerValue'],
+      id: map['id'],
+      name: map['name'],
+      description: map['description'],
+      avatar: map['image_url'],
+      location: map['location'],
+      stars: map['stars'],
+      adopted: map['adopted'],
       pictures: images,
-      stars: map['fields']['stars']['integerValue'],
     );
-  }
-
-  static String _capitalize(String input) {
-    return input.substring(0, 1).toUpperCase() + input.substring(1);
   }
 }

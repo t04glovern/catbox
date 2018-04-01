@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:catbox/ui/cat_info/cat_info_page.dart';
 import 'package:catbox/ui/cats/cat.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CatsPage extends StatefulWidget {
   @override
@@ -14,15 +17,24 @@ class _CatsPageState extends State<CatsPage> {
   @override
   void initState() {
     super.initState();
-    _loadCats();
+    _loadFirebaseCats();
   }
 
-  _loadCats() async {
-    String response =
-      await createHttpClient().read('https://firestore.googleapis.com/v1beta1/projects/catbox-flutter/databases/(default)/documents/cats');
+  //DEPRECATED
+//  _loadHttpCats() async {
+//    String response =
+//      await createHttpClient().read('https://firestore.googleapis.com/v1beta1/projects/catbox-flutter/databases/(default)/documents/cats');
+//
+//    setState(() {
+//      _cats = Cat.allFromResponse(response);
+//    });
+//  }
+
+  _loadFirebaseCats() async {
+    final documentList = await Firestore.instance.collection('cats').getDocuments();
 
     setState(() {
-      _cats = Cat.allFromResponse(response);
+      _cats = Cat.allFromFirebase(documentList.documents.map((cat) => cat.data));
     });
   }
 

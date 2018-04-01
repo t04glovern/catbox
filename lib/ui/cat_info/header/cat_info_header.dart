@@ -70,7 +70,7 @@ class CatDetailHeader extends StatelessWidget {
           new Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: new Text(
-              cat.stars,
+              cat.stars.toString(),
               style: textTheme.subhead.copyWith(color: Colors.white),
           ))
         ],
