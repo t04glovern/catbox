@@ -3,6 +3,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:catbox/ui/cats/cat.dart';
 
+final Map<String, Map<String, dynamic>> cattributeLookup = {
+  "children":     { "name": "Kid Friendly", "icon": FontAwesomeIcons.child      },
+  "desexed":      { "name": "Desexed",      "icon": FontAwesomeIcons.cut        },
+  "vaccinated":   { "name": "Vaccinated",   "icon": FontAwesomeIcons.eyeDropper },
+  "microchipped": { "name": "Microchipped", "icon": FontAwesomeIcons.microchip  },
+};
+
 class CattributesShowcase extends StatelessWidget {
   CattributesShowcase(this.cat);
 
@@ -38,6 +45,18 @@ class CattributesShowcase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var items = <Widget>[];
+
+    for (var i = 0; i < cat.cattributes.length; i++) {
+      var badge = _createCircleBadge(
+        cattributeLookup[cat.cattributes[i]]['icon'],
+        Colors.white12,
+        Colors.white,
+        cattributeLookup[cat.cattributes[i]]['name'],
+      );
+
+      items.add(badge);
+    }
 
     var delegate = new SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 4,
@@ -48,38 +67,7 @@ class CattributesShowcase extends StatelessWidget {
     return new GridView(
       padding: const EdgeInsets.only(top: 16.0),
       gridDelegate: delegate,
-      children: [
-        _createCircleBadge(
-            FontAwesomeIcons.child,
-            Colors.white12,
-            Colors.white,
-            'Kid Friendly'
-        ),
-        _createCircleBadge(
-            FontAwesomeIcons.cut,
-            Colors.white12,
-            Colors.white,
-            'Desexed'
-        ),
-        _createCircleBadge(
-            FontAwesomeIcons.eyeDropper,
-            Colors.white12,
-            Colors.white,
-            'Vaccinated'
-        ),
-        _createCircleBadge(
-            FontAwesomeIcons.microchip,
-            Colors.white12,
-            Colors.white,
-            'Microchipped'
-        ),
-        _createCircleBadge(
-            FontAwesomeIcons.fighterJet,
-            Colors.white12,
-            Colors.white,
-            'Speedy'
-        ),
-      ],
+      children: items
     );
   }
 }

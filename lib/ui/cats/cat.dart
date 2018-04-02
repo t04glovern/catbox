@@ -11,6 +11,7 @@ class Cat {
     @required this.stars,
     @required this.adopted,
     @required this.pictures,
+    @required this.cattributes,
   });
 
   final int id;
@@ -21,6 +22,7 @@ class Cat {
   final int stars;
   final bool adopted;
   final List<String> pictures;
+  final List<String> cattributes;
 
   //DEPRECATED
 //  static List<Cat> allFromResponse(String json) {
@@ -62,10 +64,17 @@ class Cat {
 
   static Cat fromFirebaseMap(Map map) {
     List<String> images = [];
+    List<String> attributes = [];
 
     if(map['pictures'] != null) {
       for(String s in map['pictures']) {
         images.add(s);
+      }
+    }
+
+    if(map['cattributes'] != null) {
+      for(String s in map['cattributes']) {
+        attributes.add(s);
       }
     }
 
@@ -78,6 +87,7 @@ class Cat {
       stars: map['stars'],
       adopted: map['adopted'],
       pictures: images,
+      cattributes: attributes,
     );
   }
 }
