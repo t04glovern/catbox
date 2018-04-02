@@ -41,16 +41,27 @@ class _CatsPageState extends State<CatsPage> {
   _buildCatItem(BuildContext context, int index) {
     Cat cat = _cats[index];
 
-    return new ListTile(
-      onTap: () => _navigateToCatDetails(cat, index),
-      leading: new Hero(
-        tag: index,
-        child: new CircleAvatar(
-          backgroundImage: new NetworkImage(cat.avatar),
+    return new Container(
+      margin: const EdgeInsets.only(top: 5.0),
+      child: new Card(
+        child: new Column(
+        mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            new ListTile(
+              onTap: () => _navigateToCatDetails(cat, index),
+              leading: new Hero(
+                tag: index,
+                child: new CircleAvatar(
+                  backgroundImage: new NetworkImage(cat.avatar),
+                ),
+              ),
+              title: new Text(cat.name),
+              subtitle: new Text(cat.description),
+              isThreeLine: true,
+            ),
+          ],
         ),
       ),
-      title: new Text(cat.name),
-      subtitle: new Text(cat.description),
     );
   }
 
@@ -64,24 +75,45 @@ class _CatsPageState extends State<CatsPage> {
     );
   }
 
+  Widget _getAppTitleWidget() {
+    return new Text(
+      'Cats',
+      style: new TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 24.0
+      ),
+    );
+  }
+
+  Widget _buildBody() {
+    return new Container(
+      // A top margin of 56.0. A left and right margin of 8.0. And a bottom margin of 0.0.
+      margin: const EdgeInsets.fromLTRB(8.0, 56.0, 8.0, 0.0),
+      child: new Column(
+        // A column widget can have several widgets that are placed in a top down fashion
+        children: <Widget>[
+          _getAppTitleWidget(),
+          _getListViewWidget()
+        ],
+      ),
+    );
+  }
+
+  Widget _getListViewWidget() {
+    return new Flexible(
+      child: new ListView.builder(
+        itemCount: _cats.length,
+        itemBuilder: _buildCatItem
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    var content;
-
-    if (_cats.isEmpty) {
-      content = new Center(
-        child: new CircularProgressIndicator(),
-      );
-    } else {
-      content = new ListView.builder(
-        itemCount: _cats.length,
-        itemBuilder: _buildCatItem,
-      );
-    }
-
     return new Scaffold(
-      appBar: new AppBar(title: new Text('Cats')),
-      body: content,
+      backgroundColor: Colors.blue,
+      body: _buildBody(),
     );
   }
 }
