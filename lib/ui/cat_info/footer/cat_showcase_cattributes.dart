@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:catbox/ui/cats/cat.dart';
 
-final Map<String, Map<String, dynamic>> cattributeLookup = {
+final dynamic cattributeLookup = {
   "children":     { "name": "Kid Friendly", "icon": FontAwesomeIcons.child      },
   "desexed":      { "name": "Desexed",      "icon": FontAwesomeIcons.cut        },
   "vaccinated":   { "name": "Vaccinated",   "icon": FontAwesomeIcons.eyeDropper },
