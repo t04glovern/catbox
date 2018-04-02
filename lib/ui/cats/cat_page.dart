@@ -1,10 +1,8 @@
+import 'package:catbox/cat_repo.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:catbox/ui/cat_info/cat_info_page.dart';
 import 'package:catbox/ui/cats/cat.dart';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CatsPage extends StatefulWidget {
   @override
@@ -20,21 +18,12 @@ class _CatsPageState extends State<CatsPage> {
     _loadFirebaseCats();
   }
 
-  //DEPRECATED
-//  _loadHttpCats() async {
-//    String response =
-//      await createHttpClient().read('https://firestore.googleapis.com/v1beta1/projects/catbox-flutter/databases/(default)/documents/cats');
-//
-//    setState(() {
-//      _cats = Cat.allFromResponse(response);
-//    });
-//  }
-
   _loadFirebaseCats() async {
-    final documentList = await Firestore.instance.collection('cats').getDocuments();
-
+    // TODO: Separate login. Alternatively, use singleton for simplicity?
+    final repo = await CatRepo.fromEMailAuth("rico.beti@gmail.com", "1a2b3c4d5e");
+    final cats = await repo.getAllCats();
     setState(() {
-      _cats = Cat.allFromFirebase(documentList.documents.map((cat) => cat.data));
+      _cats = cats;
     });
   }
 
@@ -45,7 +34,7 @@ class _CatsPageState extends State<CatsPage> {
       margin: const EdgeInsets.only(top: 5.0),
       child: new Card(
         child: new Column(
-        mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             new ListTile(
               onTap: () => _navigateToCatDetails(cat, index),
@@ -78,11 +67,7 @@ class _CatsPageState extends State<CatsPage> {
   Widget _getAppTitleWidget() {
     return new Text(
       'Cats',
-      style: new TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 24.0
-      ),
+      style: new TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24.0),
     );
   }
 
@@ -92,21 +77,14 @@ class _CatsPageState extends State<CatsPage> {
       margin: const EdgeInsets.fromLTRB(8.0, 56.0, 8.0, 0.0),
       child: new Column(
         // A column widget can have several widgets that are placed in a top down fashion
-        children: <Widget>[
-          _getAppTitleWidget(),
-          _getListViewWidget()
-        ],
+        children: <Widget>[_getAppTitleWidget(), _getListViewWidget()],
       ),
     );
   }
 
   Widget _getListViewWidget() {
     return new Flexible(
-      child: new ListView.builder(
-        itemCount: _cats.length,
-        itemBuilder: _buildCatItem
-      )
-    );
+        child: new ListView.builder(itemCount: _cats.length, itemBuilder: _buildCatItem));
   }
 
   @override
