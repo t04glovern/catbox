@@ -11,7 +11,7 @@ exports.testFunc = functions.https.onRequest((req, res) => {
     const tokenId = req.get('Authorization').split('Bearer ')[1];
 
     return admin.auth().verifyIdToken(tokenId)
-        .then((decoded) => res.status(200).send(decoded))
+        .then((decoded) => res.status(200).send('HELLO!'))
         .catch((err) => res.status(401).send(err));
 });
 
