@@ -1,6 +1,6 @@
-import 'package:catbox/cat_repo.dart';
 import 'package:flutter/material.dart';
 
+import 'package:catbox/cat_repo.dart';
 import 'package:catbox/ui/cat_info/cat_info_page.dart';
 import 'package:catbox/ui/cats/cat.dart';
 
@@ -11,19 +11,21 @@ class CatsPage extends StatefulWidget {
 
 class _CatsPageState extends State<CatsPage> {
   List<Cat> _cats = [];
+  //TODO Use the info in this for something visual
+  CatRepo _repo;
 
   @override
   void initState() {
     super.initState();
-    _loadFirebaseCats();
+    _loadFirebase();
   }
 
-  _loadFirebaseCats() async {
-    // TODO: Separate login. Alternatively, use singleton for simplicity?
-    final repo = await CatRepo.fromEMailAuth("rico.beti@gmail.com", "1a2b3c4d5e");
+  _loadFirebase() async {
+    final repo = await CatRepo.signInWithGoogle();
     final cats = await repo.getAllCats();
     setState(() {
       _cats = cats;
+      _repo = repo;
     });
   }
 
