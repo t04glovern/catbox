@@ -1,6 +1,7 @@
-import 'package:catbox/cat_repo.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 
+import 'package:catbox/cat_repo.dart';
 import 'package:catbox/ui/cat_info/cat_info_page.dart';
 import 'package:catbox/ui/cats/cat.dart';
 
@@ -11,18 +12,29 @@ class CatsPage extends StatefulWidget {
 
 class _CatsPageState extends State<CatsPage> {
   List<Cat> _cats = [];
+  //TODO Use the info in this for something visual
+  CatRepo _repo;
+  NetworkImage _profileImage = null;
 
   @override
   void initState() {
     super.initState();
-    _loadFirebaseCats();
+    _loadCats();
+    _loadProfileImage();
   }
 
-  _loadFirebaseCats() async {
-    // TODO: Separate login. Alternatively, use singleton for simplicity?
-    final repo = await CatRepo.fromEMailAuth("rico.beti@gmail.com", "1a2b3c4d5e");
+  _loadProfileImage() async {
+    final _repo = await CatRepo.signInWithGoogle();
+    setState(() {
+      _profileImage = new NetworkImage(_repo.firebaseUser.photoUrl);
+    });
+  }
+
+  _loadCats() async {
+    final repo = await CatRepo.signInWithGoogle();
     final cats = await repo.getAllCats();
     setState(() {
+      _repo = repo;
       _cats = cats;
     });
   }
@@ -92,6 +104,15 @@ class _CatsPageState extends State<CatsPage> {
     return new Scaffold(
       backgroundColor: Colors.blue,
       body: _buildBody(),
+      floatingActionButton: new FloatingActionButton(onPressed: () {
+        // Do something when FAB is pressed
+      },
+        backgroundColor: Colors.blue,
+        child: new CircleAvatar(
+          backgroundImage: _profileImage,
+          radius: 50.0,
+        ),
+      ),
     );
   }
 }
