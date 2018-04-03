@@ -50,6 +50,54 @@ Then run the following to debug with live reloading
 flutter run --debug
 ```
 
+### Deploying Firebase Configuration
+
+First install the firebase-tools package
+
+```bash
+npm install -g firebase-tools
+```
+
+Run the following to login to `firebase` cli
+
+```bash
+firebase login
+```
+
+Run the following within your `./firebase/functions/` directory if you are deploying functions
+
+```bash
+npm install
+```
+
+Make all the necessary changes within `./firebase/` in this project repository and then push the configuration using the following.
+
+
+```bash
+$ firebase deploy
+
+=== Deploying to 'catbox-flutter'...
+
+i  deploying storage, firestore, functions
+i  storage: checking storage.rules for compilation errors...
+✔  storage: rules file storage.rules compiled successfully
+i  firestore: checking firestore.rules for compilation errors...
+✔  firestore: rules file firestore.rules compiled successfully
+i  functions: ensuring necessary APIs are enabled...
+✔  functions: all necessary APIs are enabled
+i  storage: uploading rules storage.rules...
+i  firestore: uploading rules firestore.rules...
+i  functions: preparing functions directory for uploading...
+i  functions: packaged functions (43.11 KB) for uploading
+✔  functions: functions folder uploaded successfully
+✔  storage: released rules storage.rules to firebase.storage/catbox-flutter.appspot.com
+✔  firestore: released rules firestore.rules to cloud.firestore
+i  functions: updating function testFunc...
+✔  functions[testFunc]: Successful update operation.
+
+✔  Deploy complete!
+```
+
 ### Build Issues
 
 #### MissingPluginException
