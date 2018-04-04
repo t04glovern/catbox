@@ -15,3 +15,15 @@ exports.testFunc = functions.https.onRequest((req, res) => {
         .catch((err) => res.status(401).send(err));
 });
 
+exports.onLike = functions.firestore
+    .document('/likes/{likeId}')
+    .onCreate((event) => {
+        const data = event.data.data();
+
+        let catId, userId;
+        [catId, userId] = event.params.likeId.split(':');
+        return event.data.ref.set({
+            cat_id: catId,
+            user_id: userId,
+        });
+    });

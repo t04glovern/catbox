@@ -1,7 +1,32 @@
+//
+// General Firestore Rules.
+//
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /cats/{cat} {
-      allow read, write: if request.auth.uid != null;
+
+    // Allow public access to cats.
+    match /cats/{catId} {
+      allow read;
+    }
+
+    // Restrict updating of likes to documents of authenticated users.
+    match /likes/{likeId} {
+      // allow update: if isLikeOwner();
+      allow create: if isSignedIn() && exists(/databases/$(database)/documents/cats/$(likeId.split(':')[0]));
+    }
+
+    // function isValidLikeId(likeId) {
+    //   var [catId, userId] = likeId.split(':');
+    //   return exists(/cats/$(catId));
+    // }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isLikeOwner() {
+      return isSignedIn() && resource.data.user_id == request.auth.uid;
     }
   }
 }
