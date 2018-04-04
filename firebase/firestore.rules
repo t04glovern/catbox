@@ -12,8 +12,14 @@ service cloud.firestore {
 
     // Restrict updating of likes to documents of authenticated users.
     match /likes/{likeId} {
-      allow update: if isLikeOwner();
+      // allow update: if isLikeOwner();
+      allow create: if isSignedIn() && exists(/databases/$(database)/documents/cats/$(likeId.split(':')[0]));
     }
+
+    // function isValidLikeId(likeId) {
+    //   var [catId, userId] = likeId.split(':');
+    //   return exists(/cats/$(catId));
+    // }
 
     function isSignedIn() {
       return request.auth != null;
