@@ -10,8 +10,8 @@ service cloud.firestore {
       allow read;
     }
 
+    // Restrict updating of likes to documents of authenticated users.
     match /likes/{likeId} {
-      allow read;
       allow update: if isLikeOwner();
     }
 
