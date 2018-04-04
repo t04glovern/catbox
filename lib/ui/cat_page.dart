@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:catbox/services/cat_api.dart';
 import 'package:catbox/utils/cat_routes.dart';
@@ -11,32 +13,32 @@ class CatsPage extends StatefulWidget {
 
 class _CatsPageState extends State<CatsPage> {
   List<Cat> _cats = [];
-
-  //TODO Use the info in this for something visual
   CatApi _api;
   NetworkImage _profileImage;
 
   @override
   void initState() {
     super.initState();
-    _loadCats();
-    _loadProfileImage();
+    _loadFromFirebase();
   }
 
-  _loadProfileImage() async {
-    final _api = await CatApi.signInWithGoogle();
-    setState(() {
-      _profileImage = new NetworkImage(_api.firebaseUser.photoUrl);
-    });
-  }
-
-  _loadCats() async {
+  _loadFromFirebase() async {
     final api = await CatApi.signInWithGoogle();
     final cats = await api.getAllCats();
     setState(() {
       _api = api;
       _cats = cats;
+      _profileImage = new NetworkImage(api.firebaseUser.photoUrl);
     });
+  }
+
+  _reloadCats() async {
+    if (_api != null) {
+      final cats = await _api.getAllCats();
+      setState(() {
+        _cats = cats;
+      });
+    }
   }
 
   _buildCatItem(BuildContext context, int index) {
@@ -96,10 +98,19 @@ class _CatsPageState extends State<CatsPage> {
     );
   }
 
+  Future<Null> refresh() {
+    _reloadCats();
+    return new Future<Null>.value();
+  }
+
   Widget _getListViewWidget() {
     return new Flexible(
-        child: new ListView.builder(
-            itemCount: _cats.length, itemBuilder: _buildCatItem));
+        child: new RefreshIndicator(
+            onRefresh: refresh,
+            child: new ListView.builder(
+                physics: const AlwaysScrollableScrollPhysics(),
+                itemCount: _cats.length,
+                itemBuilder: _buildCatItem)));
   }
 
   @override
