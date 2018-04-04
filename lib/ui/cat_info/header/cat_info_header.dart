@@ -35,8 +35,6 @@ class CatDetailHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var textTheme = theme.textTheme;
-    var followerStyle =
-        textTheme.subhead.copyWith(color: const Color(0xBBFFFFFF));
     var screenWidth = MediaQuery.of(context).size.width;
 
     var diagonalBackground = new DiagonallyCutColoredImage(
