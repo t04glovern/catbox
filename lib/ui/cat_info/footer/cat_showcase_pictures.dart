@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:catbox/ui/cats/cat.dart';
+import 'package:catbox/models/cat.dart';
 
 class PicturesShowcase extends StatelessWidget {
   PicturesShowcase(this.cat);
