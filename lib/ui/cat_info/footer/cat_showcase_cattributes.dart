@@ -1,7 +1,6 @@
+import 'package:catbox/models/cat.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'package:catbox/models/cat.dart';
 
 final dynamic cattributeLookup = {
   "children": {"name": "Kid Friendly", "icon": FontAwesomeIcons.child},
@@ -16,8 +15,8 @@ class CattributesShowcase extends StatelessWidget {
   final Cat cat;
 
   _createCircleBadge(
-      IconData iconData, Color bgColor, Color iconColor, String text) {
-    return new Padding(
+    IconData iconData, Color bgColor, Color iconColor, String text) {
+      return new Padding(
         padding: const EdgeInsets.only(left: 8.0),
         child: new Stack(
           children: <Widget>[
@@ -41,7 +40,8 @@ class CattributesShowcase extends StatelessWidget {
               ),
             ),
           ],
-        ));
+        )
+      );
   }
 
   @override
@@ -66,8 +66,9 @@ class CattributesShowcase extends StatelessWidget {
     );
 
     return new GridView(
-        padding: const EdgeInsets.only(top: 16.0),
-        gridDelegate: delegate,
-        children: items);
+      padding: const EdgeInsets.only(top: 16.0),
+      gridDelegate: delegate,
+      children: items
+    );
   }
 }

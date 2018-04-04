@@ -1,8 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:catbox/services/cat_api.dart';
-import 'package:catbox/utils/cat_routes.dart';
-import 'package:catbox/ui/cat_info/cat_info_page.dart';
+import 'dart:async';
+
 import 'package:catbox/models/cat.dart';
+import 'package:catbox/services/cat_api.dart';
+import 'package:catbox/ui/cat_info/cat_info_page.dart';
+import 'package:catbox/utils/cat_routes.dart';
+import 'package:flutter/material.dart';
 
 class CatsPage extends StatefulWidget {
   @override
@@ -11,32 +13,32 @@ class CatsPage extends StatefulWidget {
 
 class _CatsPageState extends State<CatsPage> {
   List<Cat> _cats = [];
-
-  //TODO Use the info in this for something visual
   CatApi _api;
   NetworkImage _profileImage;
 
   @override
   void initState() {
     super.initState();
-    _loadCats();
-    _loadProfileImage();
+    _loadFromFirebase();
   }
 
-  _loadProfileImage() async {
-    final _api = await CatApi.signInWithGoogle();
-    setState(() {
-      _profileImage = new NetworkImage(_api.firebaseUser.photoUrl);
-    });
-  }
-
-  _loadCats() async {
+  _loadFromFirebase() async {
     final api = await CatApi.signInWithGoogle();
     final cats = await api.getAllCats();
     setState(() {
       _api = api;
       _cats = cats;
+      _profileImage = new NetworkImage(api.firebaseUser.photoUrl);
     });
+  }
+
+  _reloadCats() async {
+    if (_api != null) {
+      final cats = await _api.getAllCats();
+      setState(() {
+        _cats = cats;
+      });
+    }
   }
 
   _buildCatItem(BuildContext context, int index) {
@@ -56,9 +58,13 @@ class _CatsPageState extends State<CatsPage> {
                   backgroundImage: new NetworkImage(cat.avatar),
                 ),
               ),
-              title: new Text(cat.name),
+              title: new Text(
+                cat.name,
+                style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.black54),
+              ),
               subtitle: new Text(cat.description),
               isThreeLine: true,
+              dense: false,
             ),
           ],
         ),
@@ -68,20 +74,23 @@ class _CatsPageState extends State<CatsPage> {
 
   _navigateToCatDetails(Cat cat, Object avatarTag) {
     Navigator.of(context).push(
-          new FadePageRoute(
-            builder: (c) {
-              return new CatDetailsPage(cat, avatarTag: avatarTag);
-            },
-            settings: new RouteSettings(),
-          ),
-        );
+      new FadePageRoute(
+        builder: (c) {
+          return new CatDetailsPage(cat, avatarTag: avatarTag);
+        },
+        settings: new RouteSettings(),
+      ),
+    );
   }
 
   Widget _getAppTitleWidget() {
     return new Text(
       'Cats',
       style: new TextStyle(
-          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24.0),
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 32.0,
+      ),
     );
   }
 
@@ -96,10 +105,22 @@ class _CatsPageState extends State<CatsPage> {
     );
   }
 
+  Future<Null> refresh() {
+    _reloadCats();
+    return new Future<Null>.value();
+  }
+
   Widget _getListViewWidget() {
     return new Flexible(
+      child: new RefreshIndicator(
+        onRefresh: refresh,
         child: new ListView.builder(
-            itemCount: _cats.length, itemBuilder: _buildCatItem));
+          physics: const AlwaysScrollableScrollPhysics(),
+          itemCount: _cats.length,
+          itemBuilder: _buildCatItem
+        )
+      )
+    );
   }
 
   @override
@@ -111,6 +132,7 @@ class _CatsPageState extends State<CatsPage> {
         onPressed: () {
           // Do something when FAB is pressed
         },
+        tooltip: _api != null ? 'Signed-in: ' + _api.firebaseUser.displayName : 'Not Signed-in',
         backgroundColor: Colors.blue,
         child: new CircleAvatar(
           backgroundImage: _profileImage,

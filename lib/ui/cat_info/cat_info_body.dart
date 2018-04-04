@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:catbox/models/cat.dart';
+import 'package:flutter/material.dart';
 
 class CatDetailBody extends StatelessWidget {
   CatDetailBody(this.cat);
