@@ -9,11 +9,19 @@ addons:
     packages:
       - libstdc++6
       - fonts-droid
+cache:
+  bundler: true
+  directories:
+    - $HOME/.pub-cache
 before_script:
   - git clone https://github.com/flutter/flutter.git -b beta --depth 1
   - ./flutter/bin/flutter doctor
+  - ./flutter/bin/flutter packages get
+  - gem install coveralls-lcov
 script:
-  - ./flutter/bin/flutter test
-cache:
-  directories:
-    - $HOME/.pub-cache
+  - ./flutter/bin/flutter analyze lib/ test/
+  - ./flutter/bin/flutter test --coverage
+after_success:
+  - coveralls-lcov coverage/lcov.info
+after_failure:
+  - coveralls-lcov coverage/lcov.info

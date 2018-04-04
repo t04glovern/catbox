@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:catbox/ui/cats/cat.dart';
+import 'package:catbox/models/cat.dart';
 
 class DetailsShowcase extends StatelessWidget {
   DetailsShowcase(this.cat);
@@ -12,9 +12,9 @@ class DetailsShowcase extends StatelessWidget {
 
     return new Center(
       child: new Text(
-          cat.description,
-          textAlign: TextAlign.center,
-          style: textTheme.subhead.copyWith(color: Colors.white),
+        cat.description,
+        textAlign: TextAlign.center,
+        style: textTheme.subhead.copyWith(color: Colors.white),
       ),
     );
   }

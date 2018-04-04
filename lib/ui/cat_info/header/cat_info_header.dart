@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:catbox/ui/cat_info/header/cat_cut_colored_image.dart';
-import 'package:catbox/ui/cats/cat.dart';
+import 'package:catbox/models/cat.dart';
 import 'package:meta/meta.dart';
 
 class CatDetailHeader extends StatelessWidget {
@@ -68,11 +68,11 @@ class CatDetailHeader extends StatelessWidget {
             size: 16.0,
           ),
           new Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: new Text(
-              cat.stars.toString(),
-              style: textTheme.subhead.copyWith(color: Colors.white),
-          ))
+              padding: const EdgeInsets.only(left: 8.0),
+              child: new Text(
+                cat.stars.toString(),
+                style: textTheme.subhead.copyWith(color: Colors.white),
+              ))
         ],
       ),
     );

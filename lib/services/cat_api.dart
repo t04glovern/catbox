@@ -4,20 +4,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'package:catbox/ui/cats/cat.dart';
+import 'package:catbox/models/cat.dart';
 
-class CatRepo {
+class CatApi {
 
   static FirebaseAuth _auth = FirebaseAuth.instance;
   static GoogleSignIn _googleSignIn = new GoogleSignIn();
 
   FirebaseUser firebaseUser;
 
-  CatRepo(FirebaseUser user) {
+  CatApi(FirebaseUser user) {
     this.firebaseUser = user;
   }
 
-  static Future<CatRepo> signInWithGoogle() async {
+  static Future<CatApi> signInWithGoogle() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication googleAuth =
     await googleUser.authentication;
@@ -33,7 +33,7 @@ class CatRepo {
     final FirebaseUser currentUser = await _auth.currentUser();
     assert(user.uid == currentUser.uid);
 
-    return new CatRepo(user);
+    return new CatApi(user);
   }
 
   Future<List<Cat>> getAllCats() async {
