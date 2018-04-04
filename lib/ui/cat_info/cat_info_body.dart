@@ -1,5 +1,5 @@
+import 'package:catbox/models/cat.dart';
 import 'package:flutter/material.dart';
-import 'package:catbox/ui/cats/cat.dart';
 
 class CatDetailBody extends StatelessWidget {
   CatDetailBody(this.cat);
@@ -56,7 +56,8 @@ class CatDetailBody extends StatelessWidget {
         ),
         new Padding(
           padding: const EdgeInsets.only(top: 16.0),
-          child: new Text(cat.description,
+          child: new Text(
+            cat.description,
             style:
                 textTheme.body1.copyWith(color: Colors.white70, fontSize: 16.0),
           ),

@@ -8,6 +8,7 @@ dependencies:
   http: "^0.11.3+16"
   firebase_core: "^0.1.0"
   firebase_auth: "^0.5.3"
+  google_sign_in: "3.0.0"
   cloud_firestore: "0.3.0"
   font_awesome_flutter: "^6.0.0"
 
@@ -27,3 +28,9 @@ flutter:
 
   assets:
     - images/profile_header_background.png
+
+  fonts:
+    - family: Ubuntu
+      fonts:
+        - asset: fonts/Ubuntu-Regular.ttf
+        - asset: fonts/Ubuntu-Bold.ttf

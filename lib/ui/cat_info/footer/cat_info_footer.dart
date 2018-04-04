@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:catbox/models/cat.dart';
 import 'package:catbox/ui/cat_info/footer/cat_showcase_cattributes.dart';
-import 'package:catbox/ui/cat_info/footer/cat_showcase_pictures.dart';
 import 'package:catbox/ui/cat_info/footer/cat_showcase_details.dart';
-import 'package:catbox/ui/cats/cat.dart';
+import 'package:catbox/ui/cat_info/footer/cat_showcase_pictures.dart';
+import 'package:flutter/material.dart';
 
 class CatShowcase extends StatefulWidget {
   CatShowcase(this.cat);

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:catbox/models/cat.dart';
 import 'package:catbox/ui/cat_info/header/cat_cut_colored_image.dart';
-import 'package:catbox/ui/cats/cat.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 class CatDetailHeader extends StatelessWidget {
@@ -35,8 +35,6 @@ class CatDetailHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var textTheme = theme.textTheme;
-    var followerStyle =
-        textTheme.subhead.copyWith(color: const Color(0xBBFFFFFF));
     var screenWidth = MediaQuery.of(context).size.width;
 
     var diagonalBackground = new DiagonallyCutColoredImage(
@@ -72,7 +70,8 @@ class CatDetailHeader extends StatelessWidget {
             child: new Text(
               cat.stars.toString(),
               style: textTheme.subhead.copyWith(color: Colors.white),
-          ))
+            )
+          )
         ],
       ),
     );
