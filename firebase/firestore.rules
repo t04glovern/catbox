@@ -1,7 +1,26 @@
+//
+// General Firestore Rules.
+//
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /cats/{cat} {
-      allow read, write: if request.auth.uid != null;
+
+    // Allow public access to cats.
+    match /cats/{catId} {
+      allow read;
+    }
+
+    match /likes/{likeId} {
+      allow read;
+      allow update: if isLikeOwner();
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isLikeOwner() {
+      return isSignedIn() && resource.data.user_id == request.auth.uid;
     }
   }
 }
