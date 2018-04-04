@@ -58,9 +58,13 @@ class _CatsPageState extends State<CatsPage> {
                   backgroundImage: new NetworkImage(cat.avatar),
                 ),
               ),
-              title: new Text(cat.name),
+              title: new Text(
+                cat.name,
+                style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.black54),
+              ),
               subtitle: new Text(cat.description),
               isThreeLine: true,
+              dense: false,
             ),
           ],
         ),
@@ -128,6 +132,7 @@ class _CatsPageState extends State<CatsPage> {
         onPressed: () {
           // Do something when FAB is pressed
         },
+        tooltip: _api != null ? 'Signed-in: ' + _api.firebaseUser.displayName : 'Not Signed-in',
         backgroundColor: Colors.blue,
         child: new CircleAvatar(
           backgroundImage: _profileImage,
