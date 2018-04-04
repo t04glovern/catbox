@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:catbox/models/cat.dart';
+import 'package:flutter/material.dart';
 
 class PicturesShowcase extends StatelessWidget {
   PicturesShowcase(this.cat);
@@ -16,7 +16,6 @@ class PicturesShowcase extends StatelessWidget {
         width: 200.0,
         height: 200.0,
       );
-
       items.add(image);
     }
 

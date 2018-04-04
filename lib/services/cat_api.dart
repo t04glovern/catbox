@@ -1,10 +1,9 @@
 import 'dart:async';
 
+import 'package:catbox/models/cat.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-import 'package:catbox/models/cat.dart';
 
 class CatApi {
 
@@ -42,16 +41,16 @@ class CatApi {
     return documentList.documents.map((cat) {
       final data = cat.data;
       return new Cat(
-          documentId: cat.documentID,
-          catId: data['id'],
-          name: data['name'],
-          description: data['description'],
-          avatar: data['image_url'],
-          location: data['location'],
-          stars: data['stars'],
-          adopted: data['adopted'],
-          pictures: data['pictures']?.toList(),
-          cattributes: data['cattributes']?.toList());
+        documentId: cat.documentID,
+        catId: data['id'],
+        name: data['name'],
+        description: data['description'],
+        avatar: data['image_url'],
+        location: data['location'],
+        stars: data['stars'],
+        adopted: data['adopted'],
+        pictures: data['pictures']?.toList(),
+        cattributes: data['cattributes']?.toList());
     }).toList();
   }
 }

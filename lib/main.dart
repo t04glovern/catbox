@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:catbox/ui/cat_page.dart';
+import 'package:flutter/material.dart';
 
 void main() async {
   runApp(new CatBoxApp());
