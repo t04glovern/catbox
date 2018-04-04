@@ -83,7 +83,10 @@ class _CatsPageState extends State<CatsPage> {
     return new Text(
       'Cats',
       style: new TextStyle(
-          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24.0),
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 32.0,
+      ),
     );
   }
 
