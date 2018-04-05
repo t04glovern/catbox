@@ -15,6 +15,7 @@ class CatDetailHeader extends StatelessWidget {
   final Cat cat;
   final Object avatarTag;
 
+  // TODO: Separate for like/adopt.
   _createPillButton(
     String text, {
     Color backgroundColor = Colors.transparent,
@@ -30,6 +31,9 @@ class CatDetailHeader extends StatelessWidget {
           // TODO: Create proper singleton.
           final api = await CatApi.signInWithGoogle();
           api.likeCat(this.cat.documentId);
+
+          // TODO: Bind as state.
+          this.cat.stars += 1;
         },
         //TODO Launch adoption information page
         child: new Text(text),
