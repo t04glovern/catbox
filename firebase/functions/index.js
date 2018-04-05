@@ -25,5 +25,6 @@ exports.onLike = functions.firestore
         return event.data.ref.set({
             cat_id: catId,
             user_id: userId,
+            liked_on: Date.now(),
         });
     });
