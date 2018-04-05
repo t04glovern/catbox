@@ -1,4 +1,5 @@
 import 'package:catbox/models/cat.dart';
+import 'package:catbox/services/cat_api.dart';
 import 'package:catbox/ui/cat_info/header/cat_cut_colored_image.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -25,7 +26,12 @@ class CatDetailHeader extends StatelessWidget {
         minWidth: 140.0,
         color: backgroundColor,
         textColor: textColor,
-        onPressed: () {}, //TODO Launch adoption information page
+        onPressed: () async {
+          // TODO: Create proper singleton.
+          final api = await CatApi.signInWithGoogle();
+          api.likeCat(this.cat.documentId);
+        },
+        //TODO Launch adoption information page
         child: new Text(text),
       ),
     );
@@ -66,12 +72,11 @@ class CatDetailHeader extends StatelessWidget {
             size: 16.0,
           ),
           new Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: new Text(
-              cat.stars.toString(),
-              style: textTheme.subhead.copyWith(color: Colors.white),
-            )
-          )
+              padding: const EdgeInsets.only(left: 8.0),
+              child: new Text(
+                cat.stars.toString(),
+                style: textTheme.subhead.copyWith(color: Colors.white),
+              ))
         ],
       ),
     );

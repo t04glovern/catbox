@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class CatApi {
-
   static FirebaseAuth _auth = FirebaseAuth.instance;
   static GoogleSignIn _googleSignIn = new GoogleSignIn();
 
@@ -18,8 +17,7 @@ class CatApi {
 
   static Future<CatApi> signInWithGoogle() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-    await googleUser.authentication;
+    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
     final FirebaseUser user = await _auth.signInWithGoogle(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
@@ -35,22 +33,29 @@ class CatApi {
     return new CatApi(user);
   }
 
+  Future likeCat(catId) async {
+    await Firestore.instance
+        .collection('likes')
+        .document('$catId:${this.firebaseUser.uid}')
+        .setData({});
+  }
+
   Future<List<Cat>> getAllCats() async {
     final documentList = await Firestore.instance.collection('cats').getDocuments();
 
     return documentList.documents.map((cat) {
       final data = cat.data;
       return new Cat(
-        documentId: cat.documentID,
-        catId: data['id'],
-        name: data['name'],
-        description: data['description'],
-        avatar: data['image_url'],
-        location: data['location'],
-        stars: data['stars'],
-        adopted: data['adopted'],
-        pictures: data['pictures']?.toList(),
-        cattributes: data['cattributes']?.toList());
+          documentId: cat.documentID,
+          catId: data['id'],
+          name: data['name'],
+          description: data['description'],
+          avatar: data['image_url'],
+          location: data['location'],
+          stars: data['stars'],
+          adopted: data['adopted'],
+          pictures: data['pictures']?.toList(),
+          cattributes: data['cattributes']?.toList());
     }).toList();
   }
 }
