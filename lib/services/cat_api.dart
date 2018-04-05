@@ -40,6 +40,13 @@ class CatApi {
         .setData({});
   }
 
+  Future unlikeCat(catId) async {
+    await Firestore.instance
+      .collection('likes')
+      .document('$catId:${this.firebaseUser.uid}')
+      .delete();
+  }
+
   Future<List<Cat>> getAllCats() async {
     final documentList = await Firestore.instance.collection('cats').getDocuments();
 
