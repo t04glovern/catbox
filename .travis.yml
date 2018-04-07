@@ -26,7 +26,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_6a8b4a3874cb_key -iv $encrypted_6a8b4a3874cb_iv
   -in catbox.jks.enc -out catbox.jks -d
 before_script:
-- git clone https://github.com/flutter/flutter.git -b master --depth 1
+- git clone https://github.com/flutter/flutter.git -b beta --depth 1
 - "./flutter/bin/flutter doctor -v"
 - "./flutter/bin/flutter packages get"
 - gem install coveralls-lcov
