@@ -12,8 +12,12 @@ service cloud.firestore {
 
     // Documents representing likes should be private to their owning users.
     match /likes/{likeId} {
-      allow create: if isSignedIn() && exists(/databases/$(database)/documents/cats/$(catIdFromLikeId(likeId))) && request.resource.data.size() == 0;
-      allow get, delete: if isSignedIn() && userIdFromLikeId(likeId) == request.auth.uid;
+      allow create: if isSignedIn() 
+                       && exists(/databases/$(database)/documents/cats/$(catIdFromLikeId(likeId)))
+                       && request.resource.data.size() == 0;
+
+      allow get, delete: if isSignedIn() 
+                            && userIdFromLikeId(likeId) == request.auth.uid;
     }
 
     function isSignedIn() {
