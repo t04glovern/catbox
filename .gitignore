@@ -13,3 +13,6 @@ pubspec.lock
 ## Google API files
 GoogleService-Info.plist
 google-services.json
+
+## Keys
+catbox.jks
