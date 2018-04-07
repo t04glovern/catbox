@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 
+// TODO: Restructure, use active Firestore object?
 class Cat {
   final String documentId;
   final int catId;
@@ -7,7 +8,7 @@ class Cat {
   final String description;
   final String avatar;
   final String location;
-  final int stars;
+  int likes;
   final bool adopted;
   final List<String> pictures;
   final List<String> cattributes;
@@ -19,7 +20,7 @@ class Cat {
     @required this.description,
     @required this.avatar,
     @required this.location,
-    @required this.stars,
+    @required this.likes,
     @required this.adopted,
     @required this.pictures,
     @required this.cattributes,
