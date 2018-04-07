@@ -130,9 +130,10 @@ flutter packages get
 
 ## Authors
 
-* Nathan Glover [@nathangloverAUS](https://twitter.com/nathangloverAUS)
-* Rico Beti [@RicoBeti](https://twitter.com/RicoBeti)
+* Nathan Glover [@nathangloverAUS (Twitter)](https://twitter.com/nathangloverAUS), [@t04glovern (Github)](https://github.com/t04glovern)
+* Rico Beti [@RicoBeti (Twitter)](https://twitter.com/RicoBeti), [@silentbyte (Github)](https://github.com/SilentByte)
 
 ### Attribution
 
 * [CodemateLtd/FlutterMates](https://github.com/CodemateLtd/FlutterMates) - Base template
+
