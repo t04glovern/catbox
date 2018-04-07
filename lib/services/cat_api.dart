@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+// TODO: Pull out auth / make singleton.
 class CatApi {
   static FirebaseAuth _auth = FirebaseAuth.instance;
   static GoogleSignIn _googleSignIn = new GoogleSignIn();
@@ -51,24 +52,24 @@ class CatApi {
         cattributes: data['cattributes']?.toList());
   }
 
-  Future likeCat(catId) async {
+  Future likeCat(Cat cat) async {
     await Firestore.instance
         .collection('likes')
-        .document('$catId:${this.firebaseUser.uid}')
+        .document('${cat.documentId}:${this.firebaseUser.uid}')
         .setData({});
   }
 
-  Future unlikeCat(catId) async {
+  Future unlikeCat(Cat cat) async {
     await Firestore.instance
         .collection('likes')
-        .document('$catId:${this.firebaseUser.uid}')
+        .document('${cat.documentId}:${this.firebaseUser.uid}')
         .delete();
   }
 
-  Future<bool> hasLikedCat(catId) async {
+  Future<bool> hasLikedCat(Cat cat) async {
     final like = await Firestore.instance
         .collection('likes')
-        .document('$catId:${this.firebaseUser.uid}')
+        .document('${cat.documentId}:${this.firebaseUser.uid}')
         .get();
 
     return like.exists;

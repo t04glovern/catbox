@@ -30,14 +30,14 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
   void likeCat() async {
     // TODO: Create proper singleton.
     final api = await _api;
-    if (await api.hasLikedCat(widget.cat.documentId)) {
-      api.unlikeCat(widget.cat.documentId);
+    if (await api.hasLikedCat(widget.cat)) {
+      api.unlikeCat(widget.cat);
       setState(() {
         _likeCounter -= 1;
         _likeText = "LIKE";
       });
     } else {
-      api.likeCat(widget.cat.documentId);
+      api.likeCat(widget.cat);
       setState(() {
         _likeCounter += 1;
         _likeText = "UN-LIKE";
@@ -53,7 +53,7 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
       });
     });
 
-    if (await api.hasLikedCat(widget.cat.documentId)) {
+    if (await api.hasLikedCat(widget.cat)) {
       setState(() {
         _likeText = "UN-LIKE";
       });
