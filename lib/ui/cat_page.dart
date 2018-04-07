@@ -55,7 +55,7 @@ class _CatsPageState extends State<CatsPage> {
               leading: new Hero(
                 tag: index,
                 child: new CircleAvatar(
-                  backgroundImage: new NetworkImage(cat.avatar),
+                  backgroundImage: new NetworkImage(cat.avatarUrl),
                 ),
               ),
               title: new Text(
