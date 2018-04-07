@@ -14,33 +14,7 @@ class CatDetailHeader extends StatelessWidget {
 
   final Cat cat;
   final Object avatarTag;
-
-//  // TODO: Separate for like/adopt.
-//  _createPillButton(
-//    String text, {
-//    Color backgroundColor = Colors.transparent,
-//    Color textColor = Colors.white70,
-//  }) {
-//    return new ClipRRect(
-//      borderRadius: new BorderRadius.circular(30.0),
-//      child: new MaterialButton(
-//        minWidth: 140.0,
-//        color: backgroundColor,
-//        textColor: textColor,
-//        onPressed: () async {
-//          // TODO: Create proper singleton.
-//          final api = await CatApi.signInWithGoogle();
-//          api.likeCat(this.cat.documentId);
-//
-//          // TODO: Bind as state.
-//          this.cat.stars += 1;
-//        },
-//        //TODO Launch adoption information page
-//        child: new Text(text),
-//      ),
-//    );
-//  }
-
+  
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
