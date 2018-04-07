@@ -26,5 +26,21 @@ exports.onLike = functions.firestore
             cat_id: catId,
             user_id: userId,
             liked_on: Date.now(),
+        }).then(() => {
+            const db = admin.firestore();
+
+            const catRef = db.collection('cats').doc(catId);
+            db.runTransaction(t => {
+                return t.get(catRef)
+                    .then(doc => {
+                        t.update(catRef, {
+                            like_counter: (doc.data().like_counter || 0) + 1
+                        });
+                    })
+            }).then(result => {
+                console.log('AGGREGATED CAT LIKE COUNTER!');
+            }).catch(err => {
+                console.log('FAILED TO AGGREGATE CAT LIKE COUNTER: ', err);
+            });
         });
     });
