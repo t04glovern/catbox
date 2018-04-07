@@ -13,6 +13,10 @@
 
 A Flutter app that displays cats that are up for adoption along with information about them.
 
+## Download
+
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=com.nathanglover.catbox)
+
 ## Building
 
 You can follow these instructions to build the CatBox app and install it onto your device.
