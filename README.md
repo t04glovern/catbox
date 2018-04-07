@@ -23,11 +23,20 @@ If you are new to Flutter, please first follow the [Flutter Setup](https://flutt
 
 #### Google API Configs
 
-Obtain a copy of `GoogleService-Info.plist` and `google-services.json` fromm the firebase console and put them in the following directories if you need to build for release
+Obtain a copy of `GoogleService-Info.plist` and `google-services.json` from the firebase console and put them in the following directories if you need to build for release
 
 ```bash
 ./ios/Runner/GoogleService-Info.plist
 ./android/app/google-services.json
+```
+
+#### Keystore & Signing Keys
+
+Obtain a copy of `catbox.jks` and `key.properties` and place them in the following locations
+
+```bash
+./catbox.jks
+./android/key.properties
 ```
 
 ### Build/Debug App
