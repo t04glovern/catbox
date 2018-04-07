@@ -5,11 +5,12 @@
     <p>View cats that are up for adoption</p>
     <a href="https://www.dartlang.org/" target="_blank"><img src="https://img.shields.io/badge/Dart-2.0.0-ff69b4.svg?longCache=true&style=for-the-badge" alt="Dart"></a>
     <a href="https://flutter.io/" target="_blank"><img src="https://img.shields.io/badge/Flutter-SDK-3BB9FF.svg?longCache=true&style=for-the-badge" alt="Flutter"></a>
+    <a href="https://firebase.google.com/" target="_blank"><img src="https://img.shields.io/badge/Firebase-Cloud-orange.svg?longCache=true&style=for-the-badge" alt="Firebase"></a>
 </div>
 
 ## About
 
-A Flutter app written for the Flutter Udemy course. The premise is to display cats that are up for adoption along with information about them.
+A Flutter app that displays cats that are up for adoption along with information about them.
 
 ## Building
 
@@ -28,7 +29,7 @@ Obtain a copy of `GoogleService-Info.plist` and `google-services.json` fromm the
 ./android/app/google-services.json
 ```
 
-### Building and installing the CatBox app
+### Build/Debug App
 
 ```bash
 cd catbox
@@ -88,28 +89,21 @@ i  functions: ensuring necessary APIs are enabled...
 i  storage: uploading rules storage.rules...
 i  firestore: uploading rules firestore.rules...
 i  functions: preparing functions directory for uploading...
-i  functions: packaged functions (43.11 KB) for uploading
+i  functions: packaged functions (43.55 KB) for uploading
 ✔  functions: functions folder uploaded successfully
 ✔  storage: released rules storage.rules to firebase.storage/catbox-flutter.appspot.com
 ✔  firestore: released rules firestore.rules to cloud.firestore
 i  functions: updating function testFunc...
+i  functions: updating function onLikeCat...
+i  functions: updating function onUnlikeCat...
 ✔  functions[testFunc]: Successful update operation.
+✔  functions[onUnlikeCat]: Successful update operation.
+✔  functions[onLikeCat]: Successful update operation.
 
 ✔  Deploy complete!
 ```
 
-### Build Issues
-
-#### MissingPluginException
-
-If you are getting a missing plugin exception (likely due to Firestore Cloud) simply run the following to clear out the old builds
-
-```bash
-flutter clean
-flutter packages get
-```
-
-## Icon
+### Generating the App Icons
 
 Icon was created using: https://pub.dartlang.org/packages/flutter_launcher_icons
 
@@ -118,12 +112,26 @@ flutter pub get
 flutter pub pub run flutter_launcher_icons:main
 ```
 
-## API Source
+### Build Issues
+
+#### `MissingPluginException`
+
+If you are getting a missing plugin exception (likely due to Firestore Cloud) simply run the following to clear out the old builds
 
 ```bash
-https://firestore.googleapis.com/v1beta1/projects/catbox-flutter/databases/(default)/documents/cats
+flutter clean
+flutter packages get
 ```
 
 ## Screenshots
 
 ![CatBox App](/assets/project-dashboard.jpg)
+
+## Authors
+
+* Nathan Glover [@nathangloverAUS](https://twitter.com/nathangloverAUS)
+* Rico Beti [@RicoBeti](https://twitter.com/RicoBeti)
+
+### Attribution
+
+* [CodemateLtd/FlutterMates](https://github.com/CodemateLtd/FlutterMates) - Base template

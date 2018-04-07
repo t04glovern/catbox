@@ -1,11 +1,12 @@
+import 'dart:async';
+
 import 'package:catbox/models/cat.dart';
+import 'package:catbox/services/cat_api.dart';
 import 'package:catbox/ui/cat_info/header/cat_cut_colored_image.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-class CatDetailHeader extends StatelessWidget {
-  static const BACKGROUND_IMAGE = 'images/profile_header_background.png';
-
+class CatDetailHeader extends StatefulWidget {
   CatDetailHeader(
     this.cat, {
     @required this.avatarTag,
@@ -14,21 +15,52 @@ class CatDetailHeader extends StatelessWidget {
   final Cat cat;
   final Object avatarTag;
 
-  _createPillButton(
-    String text, {
-    Color backgroundColor = Colors.transparent,
-    Color textColor = Colors.white70,
-  }) {
-    return new ClipRRect(
-      borderRadius: new BorderRadius.circular(30.0),
-      child: new MaterialButton(
-        minWidth: 140.0,
-        color: backgroundColor,
-        textColor: textColor,
-        onPressed: () {}, //TODO Launch adoption information page
-        child: new Text(text),
-      ),
-    );
+  @override
+  _CatDetailHeaderState createState() => new _CatDetailHeaderState();
+}
+
+class _CatDetailHeaderState extends State<CatDetailHeader> {
+  static const BACKGROUND_IMAGE = 'images/profile_header_background.png';
+  String likeText = "LIKE";
+
+  Future<CatApi> _api;
+
+  void likeCat() async {
+    // TODO: Create proper singleton.
+    final api = await _api;
+    if(await api.hasLikedCat(widget.cat.documentId)) {
+      api.unlikeCat(widget.cat.documentId);
+      setState(() {
+        widget.cat.likes -= 1;
+        likeText = "LIKE";
+      });
+    } else {
+      api.likeCat(widget.cat.documentId);
+      setState(() {
+        widget.cat.likes += 1;
+        likeText = "UN-LIKE";
+      });
+    }
+  }
+
+  void updateLikeState() async {
+    final api = await _api;
+    if(await api.hasLikedCat(widget.cat.documentId)) {
+      setState(() {
+        likeText = "UN-LIKE";
+      });
+    } else {
+      setState(() {
+        likeText = "LIKE";
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _api = CatApi.signInWithGoogle();
+    updateLikeState();
   }
 
   @override
@@ -48,9 +80,9 @@ class CatDetailHeader extends StatelessWidget {
     );
 
     var avatar = new Hero(
-      tag: avatarTag,
+      tag: widget.avatarTag,
       child: new CircleAvatar(
-        backgroundImage: new NetworkImage(cat.avatar),
+        backgroundImage: new NetworkImage(widget.cat.avatar),
         radius: 75.0,
       ),
     );
@@ -61,17 +93,16 @@ class CatDetailHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           new Icon(
-            Icons.star,
+            Icons.thumb_up,
             color: Colors.white,
             size: 16.0,
           ),
           new Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: new Text(
-              cat.stars.toString(),
-              style: textTheme.subhead.copyWith(color: Colors.white),
-            )
-          )
+              padding: const EdgeInsets.only(left: 8.0),
+              child: new Text(
+                widget.cat.likes.toString(),
+                style: textTheme.subhead.copyWith(color: Colors.white),
+              ))
         ],
       ),
     );
@@ -85,15 +116,28 @@ class CatDetailHeader extends StatelessWidget {
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _createPillButton(
-            'ADOPT ME',
-            backgroundColor: theme.accentColor,
-            textColor: Colors.white,
+          new ClipRRect(
+            borderRadius: new BorderRadius.circular(30.0),
+            child: new MaterialButton(
+              minWidth: 140.0,
+              color: theme.accentColor,
+              textColor: Colors.white,
+              onPressed: () async {
+                //
+              },
+              //TODO Launch adoption information page
+              child: new Text('ADOPT ME'),
+            ),
           ),
-          _createPillButton(
-            'STAR',
-            backgroundColor: Colors.lightGreen,
-            textColor: Colors.white,
+          new ClipRRect(
+            borderRadius: new BorderRadius.circular(30.0),
+            child: new MaterialButton(
+              minWidth: 140.0,
+              color: Colors.lightGreen,
+              textColor: Colors.white,
+              onPressed: likeCat,
+              child: new Text(likeText),
+            ),
           ),
         ],
       ),
