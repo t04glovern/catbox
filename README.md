@@ -17,6 +17,13 @@ A Flutter app that displays cats that are up for adoption along with information
 
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=com.nathanglover.catbox)
 
+## Current TODO
+
+- [ ] Launch adoption page using [url_launcher](https://pub.dartlang.org/packages/url_launcher)
+- [ ] Change Firestore schema to new naming convention
+- [ ] Live Cat item reference so we can do updates to the UI in sync with Firestore changes
+- [ ] Add Cat description field
+
 ## Building
 
 You can follow these instructions to build the CatBox app and install it onto your device.
