@@ -133,6 +133,19 @@ flutter clean
 flutter packages get
 ```
 
+#### Can't Compile Debug APK
+
+If you are unable to compile a debug version of the APK go into `./android/app/build.gradle` and change the following line (comment out release and add the debug config)
+
+```xml
+buildTypes {
+    release {
+        //signingConfig signingConfigs.release
+        signingConfig signingConfigs.debug
+    }
+}
+```
+
 ## Screenshots
 
 ![CatBox App](/assets/project-dashboard.jpg)
