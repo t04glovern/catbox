@@ -68,7 +68,7 @@ class CatApi {
           description: data['description'],
           avatar: data['image_url'],
           location: data['location'],
-          stars: data['stars'],
+          likes: data['like_counter'],
           adopted: data['adopted'],
           pictures: data['pictures']?.toList(),
           cattributes: data['cattributes']?.toList());

@@ -27,11 +27,17 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
   void likeCat() async {
     // TODO: Create proper singleton.
     final api = await _api;
-    api.likeCat(widget.cat.documentId);
-
-    setState(() {
-      widget.cat.stars += 1;
-    });
+    if(await api.hasLikedCat(widget.cat.documentId)) {
+      api.unlikeCat(widget.cat.documentId);
+      setState(() {
+        widget.cat.likes -= 1;
+      });
+    } else {
+      api.likeCat(widget.cat.documentId);
+      setState(() {
+        widget.cat.likes += 1;
+      });
+    }
   }
 
   @override
@@ -78,7 +84,7 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
           new Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: new Text(
-                widget.cat.stars.toString(),
+                widget.cat.likes.toString(),
                 style: textTheme.subhead.copyWith(color: Colors.white),
               ))
         ],
@@ -114,7 +120,6 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
               color: Colors.lightGreen,
               textColor: Colors.white,
               onPressed: likeCat,
-              //TODO Launch adoption information page
               child: new Text('STAR'),
             ),
           ),
