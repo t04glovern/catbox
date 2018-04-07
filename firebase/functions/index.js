@@ -18,29 +18,22 @@ exports.testFunc = functions.https.onRequest((req, res) => {
 exports.onLikeCat = functions.firestore
     .document('/likes/{likeId}')
     .onCreate(event => {
-        const data = event.data.data();
-
         let catId, userId;
         [catId, userId] = event.params.likeId.split(':');
-        return event.data.ref.set({
-            cat_id: catId,
-            user_id: userId,
-            liked_on: Date.now(),
-        }).then(() => {
-            const db = admin.firestore();
-            const catRef = db.collection('cats').doc(catId);
-            db.runTransaction(t => {
-                return t.get(catRef)
-                    .then(doc => {
-                        t.update(catRef, {
-                            like_counter: (doc.data().like_counter || 0) + 1
-                        });
-                    })
-            }).then(result => {
-                console.log('Increased aggregate cat like counter.');
-            }).catch(err => {
-                console.log('Failed to increase aggregate cat like counter.', err);
-            });
+
+        const db = admin.firestore();
+        const catRef = db.collection('cats').doc(catId);
+        db.runTransaction(t => {
+            return t.get(catRef)
+                .then(doc => {
+                    t.update(catRef, {
+                        like_counter: (doc.data().like_counter || 0) + 1
+                    });
+                })
+        }).then(result => {
+            console.log('Increased aggregate cat like counter.');
+        }).catch(err => {
+            console.log('Failed to increase aggregate cat like counter.', err);
         });
     });
 
