@@ -5,28 +5,27 @@
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Allow public access to cats.
+    // Allow public read access to all cats.
     match /cats/{catId} {
       allow read;
     }
 
-    // Restrict updating of likes to documents of authenticated users.
+    // Documents representing likes should be private to their owning users.
     match /likes/{likeId} {
-      allow create: if isSignedIn() && exists(/databases/$(database)/documents/cats/$(likeId.split(':')[0])) && request.resource.data.size() == 0;
-      allow get, delete: if isSignedIn() && likeId.split(':')[1] == request.auth.uid;
+      allow create: if isSignedIn() && exists(/databases/$(database)/documents/cats/$(catIdFromLikeId(likeId))) && request.resource.data.size() == 0;
+      allow get, delete: if isSignedIn() && userIdFromLikeId(likeId) == request.auth.uid;
     }
-
-    // function isValidLikeId(likeId) {
-    //   var [catId, userId] = likeId.split(':');
-    //   return exists(/cats/$(catId));
-    // }
 
     function isSignedIn() {
       return request.auth != null;
     }
 
-    function isLikeOwner() {
-      return isSignedIn() && resource.data.user_id == request.auth.uid;
+    function catIdFromLikeId(likeId) {
+      return likeId.split(':')[0]
+    }
+
+    function userIdFromLikeId(likeId) {
+      return likeId.split(':')[1];
     }
   }
 }
