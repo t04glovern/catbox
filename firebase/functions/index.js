@@ -37,7 +37,7 @@ exports.onLikeCat = functions.firestore
                         });
                     })
             }).then(result => {
-                console.log('Increased aggergate cat like counter.');
+                console.log('Increased aggregate cat like counter.');
             }).catch(err => {
                 console.log('Failed to increase aggregate cat like counter.', err);
             });
@@ -60,7 +60,7 @@ exports.onUnlikeCat = functions.firestore
                     });
                 })
         }).then(result => {
-            console.log('Decreased aggergate cat like counter.');
+            console.log('Decreased aggregate cat like counter.');
         }).catch(err => {
             console.log('Failed to decrease aggregate cat like counter.', err);
         });
