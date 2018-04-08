@@ -21,7 +21,9 @@ class CatDetailHeader extends StatefulWidget {
 
 class _CatDetailHeaderState extends State<CatDetailHeader> {
   static const BACKGROUND_IMAGE = 'images/profile_header_background.png';
-  String _likeText = "LIKE";
+
+  bool _likeDisabled = true;
+  String _likeText = "";
   int _likeCounter = 0;
   StreamSubscription _watcher;
 
@@ -55,10 +57,12 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
 
     if (await api.hasLikedCat(widget.cat)) {
       setState(() {
+        _likeDisabled = false;
         _likeText = "UN-LIKE";
       });
     } else {
       setState(() {
+        _likeDisabled = false;
         _likeText = "LIKE";
       });
     }
@@ -150,11 +154,11 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
           ),
           new ClipRRect(
             borderRadius: new BorderRadius.circular(30.0),
-            child: new MaterialButton(
-              minWidth: 140.0,
+            child: new RaisedButton(
               color: Colors.lightGreen,
+              disabledColor: Colors.grey,
               textColor: Colors.white,
-              onPressed: likeCat,
+              onPressed: _likeDisabled ? null : likeCat,
               child: new Text(_likeText),
             ),
           ),
