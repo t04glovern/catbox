@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+// TODO: Pull out auth / make singleton.
 class CatApi {
   static FirebaseAuth _auth = FirebaseAuth.instance;
   static GoogleSignIn _googleSignIn = new GoogleSignIn();
@@ -33,45 +34,59 @@ class CatApi {
     return new CatApi(user);
   }
 
-  Future likeCat(catId) async {
+  Cat _fromDocumentSnapshot(DocumentSnapshot snapshot) {
+    final data = snapshot.data;
+
+    // TODO: Firestore field name changes:
+    // TODO: id -> external_id, image_url -> avatar_url, adopted -> is_adopted.
+    return new Cat(
+        documentId: snapshot.documentID,
+        externalId: data['id'],
+        name: data['name'],
+        description: data['description'],
+        avatarUrl: data['image_url'],
+        location: data['location'],
+        likeCounter: data['like_counter'],
+        isAdopted: data['adopted'],
+        pictures: data['pictures']?.toList(),
+        cattributes: data['cattributes']?.toList());
+  }
+
+  Future likeCat(Cat cat) async {
     await Firestore.instance
         .collection('likes')
-        .document('$catId:${this.firebaseUser.uid}')
+        .document('${cat.documentId}:${this.firebaseUser.uid}')
         .setData({});
   }
 
-  Future unlikeCat(catId) async {
+  Future unlikeCat(Cat cat) async {
     await Firestore.instance
-      .collection('likes')
-      .document('$catId:${this.firebaseUser.uid}')
-      .delete();
+        .collection('likes')
+        .document('${cat.documentId}:${this.firebaseUser.uid}')
+        .delete();
   }
 
-  Future<bool> hasLikedCat(catId) async {
+  Future<bool> hasLikedCat(Cat cat) async {
     final like = await Firestore.instance
-      .collection('likes')
-      .document('$catId:${this.firebaseUser.uid}')
-      .get();
+        .collection('likes')
+        .document('${cat.documentId}:${this.firebaseUser.uid}')
+        .get();
 
     return like.exists;
   }
 
   Future<List<Cat>> getAllCats() async {
-    final documentList = await Firestore.instance.collection('cats').getDocuments();
+    return (await Firestore.instance.collection('cats').getDocuments())
+        .documents
+        .map((snapshot) => _fromDocumentSnapshot(snapshot))
+        .toList();
+  }
 
-    return documentList.documents.map((cat) {
-      final data = cat.data;
-      return new Cat(
-          documentId: cat.documentID,
-          catId: data['id'],
-          name: data['name'],
-          description: data['description'],
-          avatar: data['image_url'],
-          location: data['location'],
-          likes: data['like_counter'],
-          adopted: data['adopted'],
-          pictures: data['pictures']?.toList(),
-          cattributes: data['cattributes']?.toList());
-    }).toList();
+  StreamSubscription watch(Cat cat, void onChange(Cat cat)) {
+    return Firestore.instance
+        .collection('cats')
+        .document(cat.documentId)
+        .snapshots
+        .listen((snapshot) => onChange(_fromDocumentSnapshot(snapshot)));
   }
 }
