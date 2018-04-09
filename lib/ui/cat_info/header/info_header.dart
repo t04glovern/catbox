@@ -50,20 +50,18 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
   void updateLikeState() async {
     final api = await _api;
     _watcher = api.watch(widget.cat, (cat) {
-      this.setState(() {
-        _likeCounter = cat.likeCounter;
-      });
+      if (mounted) {
+        setState(() {
+          _likeCounter = cat.likeCounter;
+        });
+      }
     });
 
-    if (await api.hasLikedCat(widget.cat)) {
+    bool liked = await api.hasLikedCat(widget.cat);
+    if (mounted) {
       setState(() {
         _likeDisabled = false;
-        _likeText = "UN-LIKE";
-      });
-    } else {
-      setState(() {
-        _likeDisabled = false;
-        _likeText = "LIKE";
+        _likeText = liked ? "UN-LIKE" : "LIKE";
       });
     }
   }
@@ -82,7 +80,9 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
 
   @override
   void dispose() {
-    _watcher.cancel();
+    if (_watcher != null) {
+      _watcher.cancel();
+    }
     super.dispose();
   }
 
