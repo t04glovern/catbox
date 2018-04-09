@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:catbox/models/cat.dart';
-import 'package:catbox/services/cat_api.dart';
-import 'package:catbox/ui/cat_info/cat_info_page.dart';
-import 'package:catbox/utils/cat_routes.dart';
+import 'package:catbox/services/api.dart';
+import 'package:catbox/ui/cat_info/info_page.dart';
+import 'package:catbox/utils/routes.dart';
 import 'package:flutter/material.dart';
 
 class CatsPage extends StatefulWidget {
