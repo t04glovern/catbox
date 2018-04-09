@@ -133,6 +133,8 @@ flutter pub get
 flutter pub pub run flutter_launcher_icons:main
 ```
 
+Due to a difference in the way that iOS and Android handle transparency, there's a separate icon file for iOS and a method for toggling on and off the icon changes in the `pubspec.yaml`
+
 ### Build Issues
 
 #### `MissingPluginException`
