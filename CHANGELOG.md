@@ -3,6 +3,7 @@
 - iOS build fixed
 - Icons updated and documented process for changing
 - Changes to cats that occur in the database should change in the UI without interaction
+- Updated to Flutter 0.2.8 builds
 
 ## 1.0.1
 

@@ -6,12 +6,12 @@ import 'package:catbox/ui/cat_info/info_page.dart';
 import 'package:catbox/utils/routes.dart';
 import 'package:flutter/material.dart';
 
-class CatsPage extends StatefulWidget {
+class CatList extends StatefulWidget {
   @override
-  _CatsPageState createState() => new _CatsPageState();
+  _CatListState createState() => new _CatListState();
 }
 
-class _CatsPageState extends State<CatsPage> {
+class _CatListState extends State<CatList> {
   List<Cat> _cats = [];
   CatApi _api;
   NetworkImage _profileImage;
