@@ -14,7 +14,7 @@ class CatBoxApp extends StatelessWidget {
         accentColor: Colors.pinkAccent,
         fontFamily: 'Ubuntu'
       ),
-      home: new CatsPage(),
+      home: new CatList(),
     );
   }
 }
