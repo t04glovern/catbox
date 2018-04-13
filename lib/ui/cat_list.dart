@@ -41,7 +41,7 @@ class _CatsPageState extends State<CatsPage> {
     }
   }
 
-  _buildCatItem(BuildContext context, int index) {
+  Widget _buildCatItem(BuildContext context, int index) {
     Cat cat = _cats[index];
 
     return new Container(
@@ -74,13 +74,13 @@ class _CatsPageState extends State<CatsPage> {
 
   _navigateToCatDetails(Cat cat, Object avatarTag) {
     Navigator.of(context).push(
-      new FadePageRoute(
-        builder: (c) {
-          return new CatDetailsPage(cat, avatarTag: avatarTag);
-        },
-        settings: new RouteSettings(),
-      ),
-    );
+          new FadePageRoute(
+            builder: (c) {
+              return new CatDetailsPage(cat, avatarTag: avatarTag);
+            },
+            settings: new RouteSettings(),
+          ),
+        );
   }
 
   Widget _getAppTitleWidget() {
@@ -112,15 +112,12 @@ class _CatsPageState extends State<CatsPage> {
 
   Widget _getListViewWidget() {
     return new Flexible(
-      child: new RefreshIndicator(
-        onRefresh: refresh,
-        child: new ListView.builder(
-          physics: const AlwaysScrollableScrollPhysics(),
-          itemCount: _cats.length,
-          itemBuilder: _buildCatItem
-        )
-      )
-    );
+        child: new RefreshIndicator(
+            onRefresh: refresh,
+            child: new ListView.builder(
+                physics: const AlwaysScrollableScrollPhysics(),
+                itemCount: _cats.length,
+                itemBuilder: _buildCatItem)));
   }
 
   @override
