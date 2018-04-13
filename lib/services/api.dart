@@ -48,8 +48,8 @@ class CatApi {
         location: data['location'],
         likeCounter: data['like_counter'],
         isAdopted: data['adopted'],
-        pictures: data['pictures']?.toList(),
-        cattributes: data['cattributes']?.toList());
+        pictures: new List<String>.from(data['pictures']),
+        cattributes: new List<String>.from(data['cattributes']));
   }
 
   Future likeCat(Cat cat) async {
