@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:catbox/models/cat.dart';
-import 'package:catbox/services/cat_api.dart';
-import 'package:catbox/ui/cat_info/cat_info_page.dart';
-import 'package:catbox/utils/cat_routes.dart';
+import 'package:catbox/services/api.dart';
+import 'package:catbox/ui/cat_info/info_page.dart';
+import 'package:catbox/utils/routes.dart';
 import 'package:flutter/material.dart';
 
 class CatsPage extends StatefulWidget {
@@ -41,7 +41,7 @@ class _CatsPageState extends State<CatsPage> {
     }
   }
 
-  _buildCatItem(BuildContext context, int index) {
+  Widget _buildCatItem(BuildContext context, int index) {
     Cat cat = _cats[index];
 
     return new Container(
@@ -55,7 +55,7 @@ class _CatsPageState extends State<CatsPage> {
               leading: new Hero(
                 tag: index,
                 child: new CircleAvatar(
-                  backgroundImage: new NetworkImage(cat.avatar),
+                  backgroundImage: new NetworkImage(cat.avatarUrl),
                 ),
               ),
               title: new Text(
@@ -74,13 +74,13 @@ class _CatsPageState extends State<CatsPage> {
 
   _navigateToCatDetails(Cat cat, Object avatarTag) {
     Navigator.of(context).push(
-      new FadePageRoute(
-        builder: (c) {
-          return new CatDetailsPage(cat, avatarTag: avatarTag);
-        },
-        settings: new RouteSettings(),
-      ),
-    );
+          new FadePageRoute(
+            builder: (c) {
+              return new CatDetailsPage(cat, avatarTag: avatarTag);
+            },
+            settings: new RouteSettings(),
+          ),
+        );
   }
 
   Widget _getAppTitleWidget() {
@@ -112,15 +112,12 @@ class _CatsPageState extends State<CatsPage> {
 
   Widget _getListViewWidget() {
     return new Flexible(
-      child: new RefreshIndicator(
-        onRefresh: refresh,
-        child: new ListView.builder(
-          physics: const AlwaysScrollableScrollPhysics(),
-          itemCount: _cats.length,
-          itemBuilder: _buildCatItem
-        )
-      )
-    );
+        child: new RefreshIndicator(
+            onRefresh: refresh,
+            child: new ListView.builder(
+                physics: const AlwaysScrollableScrollPhysics(),
+                itemCount: _cats.length,
+                itemBuilder: _buildCatItem)));
   }
 
   @override

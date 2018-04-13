@@ -1,19 +1,19 @@
 import 'dart:async';
 
 import 'package:catbox/models/cat.dart';
-import 'package:catbox/services/cat_api.dart';
-import 'package:catbox/ui/cat_info/header/cat_cut_colored_image.dart';
+import 'package:catbox/services/api.dart';
+import 'package:catbox/ui/cat_info/header/cut_colored_image.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 class CatDetailHeader extends StatefulWidget {
+  final Cat cat;
+  final Object avatarTag;
+
   CatDetailHeader(
     this.cat, {
     @required this.avatarTag,
   });
-
-  final Cat cat;
-  final Object avatarTag;
 
   @override
   _CatDetailHeaderState createState() => new _CatDetailHeaderState();
@@ -21,37 +21,47 @@ class CatDetailHeader extends StatefulWidget {
 
 class _CatDetailHeaderState extends State<CatDetailHeader> {
   static const BACKGROUND_IMAGE = 'images/profile_header_background.png';
-  String likeText = "LIKE";
+
+  bool _likeDisabled = true;
+  String _likeText = "";
+  int _likeCounter = 0;
+  StreamSubscription _watcher;
 
   Future<CatApi> _api;
 
   void likeCat() async {
     // TODO: Create proper singleton.
     final api = await _api;
-    if(await api.hasLikedCat(widget.cat.documentId)) {
-      api.unlikeCat(widget.cat.documentId);
+    if (await api.hasLikedCat(widget.cat)) {
+      api.unlikeCat(widget.cat);
       setState(() {
-        widget.cat.likes -= 1;
-        likeText = "LIKE";
+        _likeCounter -= 1;
+        _likeText = "LIKE";
       });
     } else {
-      api.likeCat(widget.cat.documentId);
+      api.likeCat(widget.cat);
       setState(() {
-        widget.cat.likes += 1;
-        likeText = "UN-LIKE";
+        _likeCounter += 1;
+        _likeText = "UN-LIKE";
       });
     }
   }
 
   void updateLikeState() async {
     final api = await _api;
-    if(await api.hasLikedCat(widget.cat.documentId)) {
+    _watcher = api.watch(widget.cat, (cat) {
+      if (mounted) {
+        setState(() {
+          _likeCounter = cat.likeCounter;
+        });
+      }
+    });
+
+    bool liked = await api.hasLikedCat(widget.cat);
+    if (mounted) {
       setState(() {
-        likeText = "UN-LIKE";
-      });
-    } else {
-      setState(() {
-        likeText = "LIKE";
+        _likeDisabled = false;
+        _likeText = liked ? "UN-LIKE" : "LIKE";
       });
     }
   }
@@ -59,8 +69,21 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
   @override
   void initState() {
     super.initState();
+
+    _likeCounter = widget.cat.likeCounter;
+
+    // TODO: Pull out.
     _api = CatApi.signInWithGoogle();
+
     updateLikeState();
+  }
+
+  @override
+  void dispose() {
+    if (_watcher != null) {
+      _watcher.cancel();
+    }
+    super.dispose();
   }
 
   @override
@@ -82,7 +105,7 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
     var avatar = new Hero(
       tag: widget.avatarTag,
       child: new CircleAvatar(
-        backgroundImage: new NetworkImage(widget.cat.avatar),
+        backgroundImage: new NetworkImage(widget.cat.avatarUrl),
         radius: 75.0,
       ),
     );
@@ -100,7 +123,7 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
           new Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: new Text(
-                widget.cat.likes.toString(),
+                _likeCounter.toString(),
                 style: textTheme.subhead.copyWith(color: Colors.white),
               ))
         ],
@@ -131,12 +154,12 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
           ),
           new ClipRRect(
             borderRadius: new BorderRadius.circular(30.0),
-            child: new MaterialButton(
-              minWidth: 140.0,
+            child: new RaisedButton(
               color: Colors.lightGreen,
+              disabledColor: Colors.grey,
               textColor: Colors.white,
-              onPressed: likeCat,
-              child: new Text(likeText),
+              onPressed: _likeDisabled ? null : likeCat,
+              child: new Text(_likeText),
             ),
           ),
         ],
