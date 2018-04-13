@@ -34,13 +34,6 @@ class CatApi {
     return new CatApi(user);
   }
 
-  // TODO: Find proper solution.
-  List<String> _uglyTypeHack(List<dynamic> list) {
-    List<String> stringList = [];
-    list.forEach((e) => stringList.add(e.toString()));
-    return stringList;
-  }
-
   Cat _fromDocumentSnapshot(DocumentSnapshot snapshot) {
     final data = snapshot.data;
 
@@ -55,8 +48,8 @@ class CatApi {
         location: data['location'],
         likeCounter: data['like_counter'],
         isAdopted: data['adopted'],
-        pictures: _uglyTypeHack(data['pictures']),
-        cattributes: _uglyTypeHack(data['cattributes']));
+        pictures: new List<String>.from(data['pictures']),
+        cattributes: new List<String>.from(data['cattributes']));
   }
 
   Future likeCat(Cat cat) async {
