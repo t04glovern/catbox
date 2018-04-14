@@ -112,12 +112,15 @@ class _CatListState extends State<CatList> {
 
   Widget _getListViewWidget() {
     return new Flexible(
-        child: new RefreshIndicator(
-            onRefresh: refresh,
-            child: new ListView.builder(
-                physics: const AlwaysScrollableScrollPhysics(),
-                itemCount: _cats.length,
-                itemBuilder: _buildCatItem)));
+      child: new RefreshIndicator(
+        onRefresh: refresh,
+        child: new ListView.builder(
+          physics: const AlwaysScrollableScrollPhysics(),
+          itemCount: _cats.length,
+          itemBuilder: _buildCatItem
+        )
+      )
+    );
   }
 
   @override
