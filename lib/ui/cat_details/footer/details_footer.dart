@@ -5,9 +5,9 @@ import 'package:catbox/ui/cat_details/footer/showcase_pictures.dart';
 import 'package:flutter/material.dart';
 
 class CatShowcase extends StatefulWidget {
-  CatShowcase(this.cat);
-
   final Cat cat;
+
+  CatShowcase(this.cat);
 
   @override
   _CatShowcaseState createState() => new _CatShowcaseState();
