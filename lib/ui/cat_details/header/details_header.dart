@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:catbox/models/cat.dart';
 import 'package:catbox/services/api.dart';
-import 'package:catbox/ui/cat_info/header/cut_colored_image.dart';
+import 'package:catbox/ui/cat_details/header/cut_colored_image.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 

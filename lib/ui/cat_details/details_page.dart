@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:catbox/ui/cat_info/footer/info_footer.dart';
-import 'package:catbox/ui/cat_info/info_body.dart';
-import 'package:catbox/ui/cat_info/header/info_header.dart';
+import 'package:catbox/ui/cat_details/footer/details_footer.dart';
+import 'package:catbox/ui/cat_details/details_body.dart';
+import 'package:catbox/ui/cat_details/header/details_header.dart';
 import 'package:catbox/models/cat.dart';
 import 'package:meta/meta.dart';
 

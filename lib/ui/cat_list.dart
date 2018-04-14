@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:catbox/models/cat.dart';
 import 'package:catbox/services/api.dart';
-import 'package:catbox/ui/cat_info/info_page.dart';
+import 'package:catbox/ui/cat_details/details_page.dart';
 import 'package:catbox/utils/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -74,13 +74,13 @@ class _CatListState extends State<CatList> {
 
   _navigateToCatDetails(Cat cat, Object avatarTag) {
     Navigator.of(context).push(
-          new FadePageRoute(
-            builder: (c) {
-              return new CatDetailsPage(cat, avatarTag: avatarTag);
-            },
-            settings: new RouteSettings(),
-          ),
-        );
+      new FadePageRoute(
+        builder: (c) {
+          return new CatDetailsPage(cat, avatarTag: avatarTag);
+        },
+        settings: new RouteSettings(),
+      ),
+    );
   }
 
   Widget _getAppTitleWidget() {
@@ -96,11 +96,19 @@ class _CatListState extends State<CatList> {
 
   Widget _buildBody() {
     return new Container(
-      // A top margin of 56.0. A left and right margin of 8.0. And a bottom margin of 0.0.
-      margin: const EdgeInsets.fromLTRB(8.0, 56.0, 8.0, 0.0),
+      margin: const EdgeInsets.fromLTRB(
+        8.0,  // A left margin of 8.0
+        56.0, // A top margin of 56.0
+        8.0,  // A right margin of 8.0
+        0.0   // A bottom margin of 0.0
+      ),
       child: new Column(
-        // A column widget can have several widgets that are placed in a top down fashion
-        children: <Widget>[_getAppTitleWidget(), _getListViewWidget()],
+        // A column widget can have several
+        // widgets that are placed in a top down fashion
+        children: <Widget>[
+          _getAppTitleWidget(),
+          _getListViewWidget()
+        ],
       ),
     );
   }
