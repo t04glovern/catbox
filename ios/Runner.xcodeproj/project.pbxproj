@@ -437,7 +437,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F74DE1BF9917AF2FBCF56CDB /* Pods-Runner.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon-App;
 				DEVELOPMENT_TEAM = 5J764NKNWA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -459,7 +459,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2201FE28B4C89B4D2A90CCD3 /* Pods-Runner.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon-App;
 				DEVELOPMENT_TEAM = 5J764NKNWA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
