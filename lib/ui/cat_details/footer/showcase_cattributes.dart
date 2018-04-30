@@ -10,9 +10,9 @@ final dynamic cattributeLookup = {
 };
 
 class CattributesShowcase extends StatelessWidget {
-  CattributesShowcase(this.cat);
-
   final Cat cat;
+
+  CattributesShowcase(this.cat);
 
   _createCircleBadge(
     IconData iconData, Color bgColor, Color iconColor, String text) {

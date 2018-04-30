@@ -4,20 +4,26 @@
     <h1>CatBox</h1>
     <p>View cats that are up for adoption</p>
     <a href="https://www.dartlang.org/" target="_blank"><img src="https://img.shields.io/badge/Dart-2.0.0-ff69b4.svg?longCache=true&style=for-the-badge" alt="Dart"></a>
-    <a href="https://flutter.io/" target="_blank"><img src="https://img.shields.io/badge/Flutter-0.2.8-3BB9FF.svg?longCache=true&style=for-the-badge" alt="Flutter"></a>
+    <a href="https://flutter.io/" target="_blank"><img src="https://img.shields.io/badge/Flutter-0.3.1-3BB9FF.svg?longCache=true&style=for-the-badge" alt="Flutter"></a>
     <a href="https://firebase.google.com/" target="_blank"><img src="https://img.shields.io/badge/Firebase-Cloud-orange.svg?longCache=true&style=for-the-badge" alt="Firebase"></a>
-    <a href="https://gradle.org/" target="_blank"><img src="https://img.shields.io/badge/Gradle-4.4-green.svg?longCache=true&style=for-the-badge" alt="Gradle"></a>
+    <a href="https://gradle.org/" target="_blank"><img src="https://img.shields.io/badge/Gradle-4.1-green.svg?longCache=true&style=for-the-badge" alt="Gradle"></a>
 </div>
 
 ## About
 
 A Flutter app that displays cats that are up for adoption along with information about them.
 
+This application was built as an example application for [The Complete Flutter and Firebase Developer Course](https://www.udemy.com/flutter-development/?couponCode=GITHUB2018), if you'd like to learn how to build this application from scratch you can use our coupon code [GITHUB2018](https://www.udemy.com/flutter-development/?couponCode=GITHUB2018).
+
+[![CatBox Banner](/assets/announcement-banner.png)](https://www.udemy.com/flutter-development/?couponCode=GITHUB2018)
+
 ## Download
+
+CatBox is live on Google Play and in the process of being approved on the iOS App store.
 
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=com.nathanglover.catbox)
 
-## Current TODO
+## TODO
 
 - [ ] Launch adoption page using [url_launcher](https://pub.dartlang.org/packages/url_launcher)
 - [ ] Change Firestore schema to new naming convention
@@ -101,25 +107,8 @@ $ firebase deploy
 === Deploying to 'catbox-flutter'...
 
 i  deploying storage, firestore, functions
-i  storage: checking storage.rules for compilation errors...
-✔  storage: rules file storage.rules compiled successfully
-i  firestore: checking firestore.rules for compilation errors...
-✔  firestore: rules file firestore.rules compiled successfully
-i  functions: ensuring necessary APIs are enabled...
-✔  functions: all necessary APIs are enabled
-i  storage: uploading rules storage.rules...
-i  firestore: uploading rules firestore.rules...
-i  functions: preparing functions directory for uploading...
-i  functions: packaged functions (43.55 KB) for uploading
-✔  functions: functions folder uploaded successfully
-✔  storage: released rules storage.rules to firebase.storage/catbox-flutter.appspot.com
-✔  firestore: released rules firestore.rules to cloud.firestore
-i  functions: updating function testFunc...
-i  functions: updating function onLikeCat...
-i  functions: updating function onUnlikeCat...
-✔  functions[testFunc]: Successful update operation.
-✔  functions[onUnlikeCat]: Successful update operation.
-✔  functions[onLikeCat]: Successful update operation.
+
+etc...
 
 ✔  Deploy complete!
 ```
@@ -135,7 +124,7 @@ flutter pub pub run flutter_launcher_icons:main
 
 Due to a difference in the way that iOS and Android handle transparency, there's a separate icon file for iOS and a method for toggling on and off the icon changes in the `pubspec.yaml`
 
-### Build Issues
+## Build Issues
 
 #### `MissingPluginException`
 
@@ -157,6 +146,15 @@ buildTypes {
         signingConfig signingConfigs.debug
     }
 }
+```
+
+#### iOS Build Fails around `BoringSSL/internal.h`
+
+As Flutter is still in development and more importantly, the external packages that tie in to services like Google Play are still changing a lot, there's often some teething issues with breaking dependencies and build. Run the following in to hopefully resolve most of the issues
+
+```bash
+cd ios/
+rm -rf Pods/ Podfile.lock ; pod install
 ```
 
 ## Screenshots

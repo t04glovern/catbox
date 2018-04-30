@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:catbox/models/cat.dart';
 import 'package:catbox/services/api.dart';
-import 'package:catbox/ui/cat_info/header/cut_colored_image.dart';
+import 'package:catbox/ui/cat_details/header/cut_colored_image.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
@@ -110,7 +110,7 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
       ),
     );
 
-    var followerInfo = new Padding(
+    var likeInfo = new Padding(
       padding: const EdgeInsets.only(top: 16.0),
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -121,11 +121,12 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
             size: 16.0,
           ),
           new Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: new Text(
-                _likeCounter.toString(),
-                style: textTheme.subhead.copyWith(color: Colors.white),
-              ))
+            padding: const EdgeInsets.only(left: 8.0),
+            child: new Text(
+              _likeCounter.toString(),
+              style: textTheme.subhead.copyWith(color: Colors.white),
+            )
+          )
         ],
       ),
     );
@@ -175,7 +176,7 @@ class _CatDetailHeaderState extends State<CatDetailHeader> {
           child: new Column(
             children: [
               avatar,
-              followerInfo,
+              likeInfo,
               actionButtons,
             ],
           ),

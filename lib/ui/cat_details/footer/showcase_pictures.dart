@@ -2,9 +2,9 @@ import 'package:catbox/models/cat.dart';
 import 'package:flutter/material.dart';
 
 class PicturesShowcase extends StatelessWidget {
-  PicturesShowcase(this.cat);
-
   final Cat cat;
+
+  PicturesShowcase(this.cat);
 
   @override
   Widget build(BuildContext context) {
