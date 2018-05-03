@@ -7,7 +7,7 @@ cd android &&
 # ./gradlew --status
 # ./gradlew assembleRelease
 # java -Dorg.gradle.appname=gradlew -classpath gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain -q -Ptarget=../lib/main.dart assembleRelease
-# java -Xmx256M -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant -cp ~/.gradle/wrapper/dists/gradle-4.4-all/9br9xq1tocpiv8o6njlyu5op1/gradle-4.4/lib/gradle-launcher-4.4.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 4.4
+# java -Xmx256M -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant -cp ~/.gradle/wrapper/dists/gradle-4.1-all/9br9xq1tocpiv8o6njlyu5op1/gradle-4.1/lib/gradle-launcher-4.1.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 4.1
 
 cd ../
 
