@@ -7,7 +7,8 @@ service cloud.firestore {
 
     // Allow public read access to all cats.
     match /cats/{catId} {
-      allow read, write: if isAdmin();
+      allow read;
+      allow write: if isAdmin();
     }
 
     // Documents representing likes should be private to their owning users.
