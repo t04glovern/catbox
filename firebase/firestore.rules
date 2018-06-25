@@ -8,6 +8,7 @@ service cloud.firestore {
     // Allow public read access to all cats.
     match /cats/{catId} {
       allow read;
+      allow write: if isAdmin();
     }
 
     // Documents representing likes should be private to their owning users.
@@ -22,6 +23,12 @@ service cloud.firestore {
 
     function isSignedIn() {
       return request.auth != null;
+    }
+    
+    function isAdmin() {
+    	return isSignedIn()
+      	&& (request.auth.uid == 'LrcWfu4dDofnfgXuiMvELx54NVz2'
+          || request.auth.uid == 'QFwK5RgLinYq06JUKRGqVdPXyDA2');
     }
 
     function catIdFromLikeId(likeId) {
