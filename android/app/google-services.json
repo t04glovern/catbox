@@ -1,0 +1,95 @@
+{
+  "project_info": {
+    "project_number": "812887303310",
+    "firebase_url": "https://catbox-flutter.firebaseio.com",
+    "project_id": "catbox-flutter",
+    "storage_bucket": "catbox-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812887303310:android:812371ef5b88633a",
+        "android_client_info": {
+          "package_name": "com.nathanglover.catbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812887303310-k0149q03ln20hvi9qkr5rc8l65vi4vhp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nathanglover.catbox",
+            "certificate_hash": "0419b30fff685064169e3186be330c9761657499"
+          }
+        },
+        {
+          "client_id": "812887303310-cdvpvbgch1jk4i2981s8rjmhg9cbjmra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nathanglover.catbox",
+            "certificate_hash": "9d8437acd14471f02940eceeb1d3520fc38f9ca5"
+          }
+        },
+        {
+          "client_id": "812887303310-mkuie0dl3okogqo51otcv0h0itsa0rag.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nathanglover.catbox",
+            "certificate_hash": "cbe933687ceacccf247685e9ba3284e3986013cd"
+          }
+        },
+        {
+          "client_id": "812887303310-o9k6rb6aptgo24tc93l41i1u22gbusm7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nathanglover.catbox",
+            "certificate_hash": "53d101cfcb698a98f5190d9e63309649dcd3a894"
+          }
+        },
+        {
+          "client_id": "812887303310-pobrnbbesban012g1lbvgihhisor9sfu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nathanglover.catbox",
+            "certificate_hash": "bfde5ec5fdea60136fcde51e6ef94f98242206aa"
+          }
+        },
+        {
+          "client_id": "812887303310-usa8onvorfd6jrmqk6ddihve14ggphnk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEN-md50zSlX2UIBLVVOiz572WII-bO_0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812887303310-usa8onvorfd6jrmqk6ddihve14ggphnk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "812887303310-mahkgrohfsm7qjidam2q32vc6f4ng124.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nathanglover.catbox",
+                "app_store_id": "1369996900"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>812887303310-mahkgrohfsm7qjidam2q32vc6f4ng124.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.812887303310-mahkgrohfsm7qjidam2q32vc6f4ng124</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>812887303310-mkuie0dl3okogqo51otcv0h0itsa0rag.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD2CjPqsxlT2dPTzUhzDheLQ0Ftc64MDh8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>812887303310</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.nathanglover.catbox</string>
+	<key>PROJECT_ID</key>
+	<string>catbox-flutter</string>
+	<key>STORAGE_BUCKET</key>
+	<string>catbox-flutter.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:812887303310:ios:812371ef5b88633a</string>
+	<key>DATABASE_URL</key>
+	<string>https://catbox-flutter.firebaseio.com</string>
+</dict>
+</plist>

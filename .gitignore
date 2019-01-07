@@ -9,10 +9,6 @@ packages
 .flutter-plugins
 *.psd
 
-## Google API files
-GoogleService-Info.plist
-google-services.json
-
 ## Keys
 catbox.jks
 key.properties
