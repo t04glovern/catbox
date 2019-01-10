@@ -29,8 +29,8 @@ android {
         applicationId "com.nathanglover.catbox"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -44,8 +44,8 @@ android {
     }
     buildTypes {
         release {
-            //signingConfig signingConfigs.release
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.debug
         }
     }
 }
