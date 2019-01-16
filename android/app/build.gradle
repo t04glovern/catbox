@@ -28,6 +28,7 @@ android {
     defaultConfig {
         applicationId "com.nathanglover.catbox"
         minSdkVersion 16
+        multiDexEnabled true
         targetSdkVersion 27
         versionCode 5
         versionName "1.0.4"
