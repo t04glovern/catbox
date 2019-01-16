@@ -3,19 +3,19 @@
 <div align = "center">
     <h1>CatBox</h1>
     <p>View cats that are up for adoption</p>
-    <a href="https://www.dartlang.org/" target="_blank"><img src="https://img.shields.io/badge/Dart-2.1.0-ff69b4.svg?longCache=true&style=for-the-badge" alt="Dart"></a>
-    <a href="https://flutter.io/" target="_blank"><img src="https://img.shields.io/badge/Flutter-0.7.6-3BB9FF.svg?longCache=true&style=for-the-badge" alt="Flutter"></a>
+    <a href="https://www.dartlang.org/" target="_blank"><img src="https://img.shields.io/badge/Dart-2.1.1-ff69b4.svg?longCache=true&style=for-the-badge" alt="Dart"></a>
+    <a href="https://flutter.io/" target="_blank"><img src="https://img.shields.io/badge/Flutter-1.1.10-3BB9FF.svg?longCache=true&style=for-the-badge" alt="Flutter"></a>
     <a href="https://firebase.google.com/" target="_blank"><img src="https://img.shields.io/badge/Firebase-Cloud-orange.svg?longCache=true&style=for-the-badge" alt="Firebase"></a>
-    <a href="https://gradle.org/" target="_blank"><img src="https://img.shields.io/badge/Gradle-4.1-green.svg?longCache=true&style=for-the-badge" alt="Gradle"></a>
+    <a href="https://gradle.org/" target="_blank"><img src="https://img.shields.io/badge/Gradle-4.4-green.svg?longCache=true&style=for-the-badge" alt="Gradle"></a>
 </div>
 
 ## About
 
 A Flutter app that displays cats that are up for adoption along with information about them.
 
-This application was built as an example application for [The Complete Flutter and Firebase Developer Course](https://www.udemy.com/flutter-development/?couponCode=GITHUB2018), if you'd like to learn how to build this application from scratch you can use our coupon code [GITHUB2018](https://www.udemy.com/flutter-development/?couponCode=GITHUB2018).
+This application was built as an example application for [The Complete Flutter and Firebase Developer Course](https://www.udemy.com/flutter-development/?couponCode=GITHUB2019), if you'd like to learn how to build this application from scratch you can use our coupon code [GITHUB2019](https://www.udemy.com/flutter-development/?couponCode=GITHUB2019).
 
-[![CatBox Banner](/assets/announcement-banner.png)](https://www.udemy.com/flutter-development/?couponCode=GITHUB2018)
+[![CatBox Banner](/assets/announcement-banner.png)](https://www.udemy.com/flutter-development/?couponCode=GITHUB2019)
 
 ## Download
 

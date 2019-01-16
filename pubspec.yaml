@@ -5,22 +5,22 @@ dependencies:
   flutter:
     sdk: flutter
 
-  firebase_core: 0.1.2
-  firebase_auth: 0.5.3
-  google_sign_in: 3.0.0
-  cloud_firestore: 0.3.0
-  font_awesome_flutter: 8.0.1
+  firebase_core: ^0.2.5+1
+  firebase_auth: ^0.6.6
+  google_sign_in: ^3.2.4
+  cloud_firestore: ^0.8.2+3
+  font_awesome_flutter: ^8.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_launcher_icons: 0.6.1
+  flutter_launcher_icons: ^0.7.0
 
 flutter_icons:
-  image_path: "assets/icon.png"
+  image_path_android: "assets/icon.png"
+  image_path_ios: "assets/icon-ios.png"
   android: true
-  ios: false
+  ios: true
 
 flutter:
   uses-material-design: true

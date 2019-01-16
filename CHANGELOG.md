@@ -1,3 +1,8 @@
+## 1.1.0
+
+- Resolved build issues for iOS
+- Bumped version of all firebase / google-sign-in libs to latest
+
 ## 1.0.2
 
 - iOS build fixed

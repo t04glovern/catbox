@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-// TODO: Pull out auth / make singleton.
 class CatApi {
   static FirebaseAuth _auth = FirebaseAuth.instance;
   static GoogleSignIn _googleSignIn = new GoogleSignIn();
@@ -17,9 +16,9 @@ class CatApi {
   }
 
   static Future<CatApi> signInWithGoogle() async {
-    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-    final FirebaseUser user = await _auth.signInWithGoogle(
+    GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+    GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    FirebaseUser user = await _auth.signInWithGoogle(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
@@ -28,7 +27,7 @@ class CatApi {
     assert(!user.isAnonymous);
     assert(await user.getIdToken() != null);
 
-    final FirebaseUser currentUser = await _auth.currentUser();
+    FirebaseUser currentUser = await _auth.currentUser();
     assert(user.uid == currentUser.uid);
 
     return new CatApi(user);
@@ -37,8 +36,6 @@ class CatApi {
   Cat _fromDocumentSnapshot(DocumentSnapshot snapshot) {
     final data = snapshot.data;
 
-    // TODO: Firestore field name changes:
-    // TODO: id -> external_id, image_url -> avatar_url, adopted -> is_adopted.
     return new Cat(
         documentId: snapshot.documentID,
         externalId: data['id'],
@@ -86,7 +83,7 @@ class CatApi {
     return Firestore.instance
         .collection('cats')
         .document(cat.documentId)
-        .snapshots
+        .snapshots()
         .listen((snapshot) => onChange(_fromDocumentSnapshot(snapshot)));
   }
 }
